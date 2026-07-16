@@ -45,7 +45,7 @@ export default function CheckoutPage() {
         <div className="bg-black/50 p-6 rounded-xl border border-white/5 mb-8">
           <div className="flex justify-between items-center mb-4">
             <span className="text-neutral-400">Class A: First Step in Journey</span>
-            <span className="text-white font-medium">฿ 299.00</span>
+            <span className="text-white font-medium">฿ 99.00</span>
           </div>
           <div className="flex justify-between items-center mb-4">
             <span className="text-neutral-400">โบนัสทั้ง 3 รายการ</span>
@@ -54,7 +54,7 @@ export default function CheckoutPage() {
           <div className="border-t border-white/10 my-4"></div>
           <div className="flex justify-between items-center text-xl font-bold text-[var(--gold-primary)]">
             <span>รวมทั้งหมด</span>
-            <span>฿ 299.00</span>
+            <span>฿ 99.00</span>
           </div>
         </div>
 

@@ -8,6 +8,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const [showBanner, setShowBanner] = useState(true);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -27,10 +29,19 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-[#050505]/90 backdrop-blur-md border-b border-white/5" : "bg-transparent"}`}>
       {/* Urgency Banner */}
-      <div className="bg-gradient-to-r from-yellow-500 via-[var(--gold-primary)] to-yellow-500 text-black text-xs sm:text-sm font-black text-center py-2 px-4 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
-        <span className="animate-pulse inline-block mr-2 text-red-600">ด่วน!</span>
-        โค้งสุดท้าย! โปรโมชัน Early Bird ลด 70% สิทธิ์ใกล้เต็มแล้ว (เหลือ 100 สิทธิ์สุดท้าย)
-      </div>
+      {showBanner && (
+        <div className="bg-gradient-to-r from-yellow-500 via-[var(--gold-primary)] to-yellow-500 text-black text-xs sm:text-sm font-black text-center py-2 px-4 shadow-[0_0_15px_rgba(212,175,55,0.4)] relative pr-10">
+          <span className="animate-pulse inline-block mr-2 text-red-600">ด่วน!</span>
+          โค้งสุดท้าย! โปรโมชัน Early Bird ลด 70% สิทธิ์ใกล้เต็มแล้ว (เหลือ 100 สิทธิ์สุดท้าย)
+          <button 
+            onClick={() => setShowBanner(false)} 
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-black/60 hover:text-black transition-colors"
+            aria-label="Close banner"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+      )}
       
       <nav className={`transition-all duration-300 ${isScrolled ? "py-4" : "py-6"}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
