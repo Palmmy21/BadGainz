@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
               name: 'Badgainz: The First 10K + All Bonuses',
               description: 'Class A Course with 3 Crazy Bonuses',
             },
-            unit_amount: 29900, // 299.00 THB
+            unit_amount: 9900, // 99.00 THB
           },
           quantity: 1,
         },

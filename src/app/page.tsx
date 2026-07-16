@@ -151,8 +151,9 @@ export default function Home() {
               { 
                 title: "Class A: First Step in Journey", 
                 desc: "E-book สอนหาเงินก้อนแรกจาก Digital Product (หา Pain Point > เช็ค Demand > สร้าง > ขาย)", 
-                price: "299",
-                oldPrice: "990"
+                price: "99",
+                oldPrice: "990",
+                badge: "100 ท่านแรกเท่านั้น!"
               },
               { 
                 title: "Class A: Content to Cash", 
