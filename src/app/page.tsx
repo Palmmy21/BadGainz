@@ -146,7 +146,7 @@ export default function Home() {
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
+            {([
               { 
                 title: "Class A: First Step in Journey", 
                 desc: "E-book สอนหาเงินก้อนแรกจาก Digital Product (หา Pain Point > เช็ค Demand > สร้าง > ขาย)", 
@@ -157,16 +157,18 @@ export default function Home() {
                 title: "Class A: Content to Cash", 
                 desc: "สอนทำคอนเทนต์ดึงดูดลูกค้า เทคนิคเปลี่ยนยอดไลค์ให้กลายเป็นยอดขายแบบไม่ต้องยิงแอด", 
                 price: "699",
-                oldPrice: "1,590"
+                oldPrice: "1,590",
+                comingSoon: true
               },
               { 
                 title: "Class A: The Closer System", 
                 desc: "สอนทำระบบหลังบ้านอัตโนมัติ พร้อมแจก Prompt และสคริปต์ปิดการขายให้ลูกค้ายอมจ่ายทันที", 
                 price: "1,190",
-                oldPrice: "2,990"
+                oldPrice: "2,990",
+                comingSoon: true
               },
-            ].map((item, idx) => (
-              <FadeIn key={idx} direction="up" delay={0.2 + idx * 0.1} className="bg-[#111] border border-white/5 rounded-2xl overflow-hidden hover:border-[var(--gold-primary)]/50 transition-all duration-300 group hover:-translate-y-2">
+            ] as {title: string, desc: string, price: string, oldPrice: string, comingSoon?: boolean, badge?: string}[]).map((item, idx) => (
+              <FadeIn key={idx} direction="up" delay={0.2 + idx * 0.1} className={`bg-[#111] border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 group ${item.comingSoon ? 'opacity-50 grayscale cursor-not-allowed' : 'hover:border-[var(--gold-primary)]/50 hover:-translate-y-2'}`}>
                 <div className="aspect-[4/3] bg-neutral-900 relative overflow-hidden flex items-center justify-center">
                   {/* Abstract Background for Class A */}
                   <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top_right,var(--gold-primary),transparent_50%)]" />
@@ -179,7 +181,7 @@ export default function Home() {
                       {item.badge}
                     </div>
                   )}
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[var(--gold-primary)] transition-colors">{item.title}</h3>
+                  <h3 className={`text-xl font-bold text-white mb-3 transition-colors ${!item.comingSoon && 'group-hover:text-[var(--gold-primary)]'}`}>{item.title}</h3>
                   <p className="text-neutral-400 text-sm mb-8 leading-relaxed h-12">{item.desc}</p>
                   <div className="flex justify-between items-end">
                     <div>
@@ -189,9 +191,15 @@ export default function Home() {
                         <span className="text-[var(--gold-primary)] font-black text-2xl">฿ {item.price}</span>
                       </div>
                     </div>
-                    <Link href="/checkout" className="text-sm font-bold text-black bg-white px-6 py-3 rounded hover:bg-[var(--gold-primary)] transition-colors">
-                      สั่งซื้อ
-                    </Link>
+                    {item.comingSoon ? (
+                      <span className="text-sm font-bold text-neutral-400 bg-neutral-800 px-6 py-3 rounded">
+                        เร็วๆนี้
+                      </span>
+                    ) : (
+                      <Link href="/checkout" className="text-sm font-bold text-black bg-white px-6 py-3 rounded hover:bg-[var(--gold-primary)] transition-colors">
+                        สั่งซื้อ
+                      </Link>
+                    )}
                   </div>
                 </div>
               </FadeIn>
