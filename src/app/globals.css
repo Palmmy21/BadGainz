@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  --gold-primary: #D4AF37;
+  --gold-hover: #F3E5AB;
+  --dark-accent: #111111;
+  --grid-color: rgba(255, 255, 255, 0.05);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold-primary: var(--gold-primary);
+  --color-gold-hover: var(--gold-hover);
+  --color-dark-accent: var(--dark-accent);
+  --font-sans: var(--font-geist-sans), "Kanit", sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
