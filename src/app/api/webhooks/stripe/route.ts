@@ -44,7 +44,8 @@ export async function POST(req: Request) {
       });
       console.log("Order saved to Firebase successfully:", session.id);
 
-      // 2. Send email via Resend
+      // 2. Send email via Resend (DISABLED FOR NOW)
+      /*
       if (customerEmail) {
         await resend.emails.send({
           from: "Badgainz Team <onboarding@resend.dev>", // TODO: Change this to your verified domain later
@@ -70,6 +71,7 @@ export async function POST(req: Request) {
         });
         console.log("Welcome email sent to:", customerEmail);
       }
+      */
     } catch (err) {
       console.error("Error saving order or sending email:", err);
     }

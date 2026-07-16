@@ -107,15 +107,16 @@ export default function Home() {
               สำหรับผู้เริ่มต้นที่ยังไม่รู้จะจับต้นชนปลายอย่างไร เราแจกบทเรียนพื้นฐานและ E-Book ไกด์ไลน์การสร้างรายได้ออนไลน์ให้คุณไปศึกษาได้ฟรีๆ ทันที
             </p>
             
-            <form className="flex flex-col sm:flex-row gap-3">
+            <form action="/free/download" className="flex flex-col sm:flex-row gap-3">
               <input 
                 type="email" 
+                name="email"
                 placeholder="กรอกอีเมลของคุณที่นี่..." 
                 className="flex-1 bg-black/50 border border-white/20 text-white px-6 py-4 rounded-lg focus:outline-none focus:border-[var(--gold-primary)] transition-colors"
                 required
               />
               <button 
-                type="button" 
+                type="submit" 
                 className="bg-[var(--gold-primary)] text-black font-bold px-8 py-4 rounded-lg hover:bg-yellow-500 transition-colors whitespace-nowrap"
               >
                 ส่งข้อมูลให้ฉันเลย
