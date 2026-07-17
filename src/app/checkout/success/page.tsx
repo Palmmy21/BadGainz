@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle, Download, BookOpen, MessageCircle } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
@@ -26,15 +27,20 @@ export default function SuccessPage() {
               <Download className="text-[var(--gold-primary)]" />
               สิ่งที่คุณจะได้รับทันที
             </h2>
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <BookOpen className="w-6 h-6 text-[var(--gold-primary)] shrink-0 mt-1" />
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <div className="shrink-0 w-32 aspect-[3/4] relative rounded-lg overflow-hidden border border-[var(--gold-primary)]/30 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                  <Image src="/first-step-ebook.jpg" alt="Class A: First Step in Journey" fill className="object-cover" />
+                </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg">Class A: First Step in Journey (E-Book)</h3>
-                  <p className="text-neutral-400 text-sm">คู่มือเริ่มต้นหาเงินจาก Digital Product สเต็ปบายสเต็ป</p>
+                  <h3 className="text-white font-bold text-xl mb-2 text-center sm:text-left">Class A: First Step in Journey (E-Book)</h3>
+                  <p className="text-neutral-400 text-sm mb-4 text-center sm:text-left leading-relaxed">คู่มือเริ่มต้นหาเงินจาก Digital Product สเต็ปบายสเต็ป ที่จะช่วยให้คุณจับ Pain Point และแปลงมันเป็นรายได้จริง</p>
+                  <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-green-400 font-bold bg-green-500/10 w-fit mx-auto sm:mx-0 px-3 py-1.5 rounded-full">
+                    <CheckCircle className="w-4 h-4" /> ปลดล็อกการเข้าถึงแล้ว
+                  </div>
                 </div>
               </div>
-              <div className="border-t border-white/10 my-4" />
+              <div className="border-t border-white/10 my-6" />
               <div className="flex items-start gap-4">
                 <MessageCircle className="w-6 h-6 text-[var(--gold-primary)] shrink-0 mt-1" />
                 <div>

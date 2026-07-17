@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
@@ -21,6 +22,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "แนะนำตัว", href: "/#about" },
     { name: "สินค้า", href: "/#products" },
+    { name: "รับทำเว็บ (Services)", href: "/services" },
     { name: "รีวิว", href: "/#reviews" },
     { name: "บทความ (Blog)", href: "/blog" },
     { name: "ผลลัพธ์ (Proof)", href: "/proof" },
@@ -45,8 +47,7 @@ export default function Navbar() {
       
       <nav className={`transition-all duration-300 ${isScrolled ? "py-4" : "py-6"}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="text-[var(--gold-primary)] font-black tracking-widest text-xl uppercase z-50">
+        <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-[var(--gold-primary)] font-black tracking-widest text-xl uppercase z-50">
           BADGAINZ
         </Link>
 
