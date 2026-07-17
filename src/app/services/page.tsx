@@ -67,7 +67,7 @@ export default function ServicesPage() {
           </h1>
           <p className="text-neutral-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
             รับออกแบบและพัฒนา Web Application, SaaS, และ Landing Page 
-            ที่เน้นสร้าง Conversion ให้คุณเปลี่ยนยอดคลิก เป็นยอดขายได้จริง
+            ที่เน้นสร้าง Conversion พร้อมโครงสร้าง <strong className="text-[var(--gold-primary)] font-bold">SEO พื้นฐาน</strong> เพื่อดันเว็บคุณให้ติดอันดับ Google
           </p>
         </FadeIn>
       </section>
@@ -93,7 +93,7 @@ export default function ServicesPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">HorCare (ระบบบริหารหอพัก)</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
-                  Web Application แบบ SaaS สำหรับเจ้าของหอพัก มีระบบ Login, Dashboard, สร้างบิล, รับชำระเงิน และระบบจัดการผู้เช่าแบบครบวงจร
+                  Web Application บริหารหอพักครบวงจร <strong className="text-white">มีหอพักใช้งานจริงกว่า 50 แห่ง</strong> ช่วยเจ้าของหอพัก <strong className="text-white">ลดเวลาเก็บค่าเช่าได้กว่า 80%</strong> ด้วยระบบสร้างบิลและรับชำระอัตโนมัติ
                 </p>
                 <a href="https://horcare-landing.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all mt-auto">
                   ดูผลงานจริง <ArrowRight className="w-4 h-4" />
@@ -116,7 +116,7 @@ export default function ServicesPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Badgainz Platform</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
-                  หน้าเว็บขาย Digital Product ที่เน้น High-Conversion มีระบบตัดบัตรอัตโนมัติ (Stripe) และ Webhook เชื่อมต่อการส่งของอัตโนมัติ
+                  หน้าเว็บขาย Digital Product ที่ถูกออกแบบตามหลักจิตวิทยา <strong className="text-white">สร้างยอดขายอัตโนมัติ (Passive Income) ได้ตลอด 24 ชม.</strong> โดยไม่ต้องใช้แอดมินคอยตอบแชท
                 </p>
                 <a href="/" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all mt-auto">
                   ดูผลงานจริง <ArrowRight className="w-4 h-4" />
@@ -139,7 +139,7 @@ export default function ServicesPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">BlackAce (เว็บโปรไฟล์)</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
-                  หน้าเว็บโปรไฟล์สำหรับ Content Creator เน้นดีไซน์ดุดัน (Dark Theme) สไตล์ Black & Red พร้อมส่วนแนะนำคอร์สเรียนและผลงานที่ผ่านมา
+                  หน้าเว็บโปรไฟล์สำหรับ Content Creator <strong className="text-white">ทำคะแนนความเร็ว PageSpeed ได้ 99/100</strong> โหลดไวทะลุจอ ช่วยยกระดับความน่าเชื่อถือให้ Personal Brand แบบพรีเมียม
                 </p>
                 <a href="https://blackace-five.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all mt-auto">
                   ดูผลงานจริง <ArrowRight className="w-4 h-4" />
@@ -206,6 +206,7 @@ export default function ServicesPage() {
                       <option value="landing_page">Landing Page (หน้าเว็บแนะนำสินค้า/บริการ)</option>
                       <option value="ecommerce">E-Commerce (ระบบตะกร้าสินค้า/ตัดบัตร)</option>
                       <option value="saas">Web Application / SaaS (ระบบมีล็อคอิน/ฐานข้อมูล)</option>
+                      <option value="seo">SEO / ปรับแต่งเว็บให้ติดอันดับ Google</option>
                       <option value="other">อื่นๆ</option>
                     </select>
                   </div>
