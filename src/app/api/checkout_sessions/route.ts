@@ -8,26 +8,27 @@ export async function POST(req: NextRequest) {
 
     // Validate the request if needed
     
-    // Create Checkout Sessions from body params.
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'promptpay'],
-      customer_email: email || undefined,
-      line_items: [
-        {
-          price_data: {
-            currency: 'thb',
-            product_data: {
-              name: 'Badgainz: The First 10K + All Bonuses',
-              description: 'Class A Course with 3 Crazy Bonuses',
+      const origin = req.headers.get('origin') || process.env.NEXT_PUBLIC_APP_URL || 'https://badgainz.vercel.app';
+      
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card', 'promptpay'],
+        customer_email: email || undefined,
+        line_items: [
+          {
+            price_data: {
+              currency: 'thb',
+              product_data: {
+                name: 'Badgainz: The First 10K + All Bonuses',
+                description: 'Class A Course with 3 Crazy Bonuses',
+              },
+              unit_amount: 9900, // 99.00 THB
             },
-            unit_amount: 9900, // 99.00 THB
+            quantity: 1,
           },
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
+        ],
+        mode: 'payment',
+        success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${origin}/checkout`,
       metadata: {
         product: 'first_10k_bundle'
       }
