@@ -127,10 +127,13 @@ export default function Home() {
           
           <div className="w-full md:w-1/3 relative z-10 flex justify-center">
             {/* Mock E-book/Course Graphic */}
-            <div className="w-48 h-64 bg-[#111] border-2 border-[var(--gold-primary)]/50 rounded-xl shadow-[0_0_50px_rgba(212,175,55,0.2)] -rotate-6 hover:rotate-0 transition-transform duration-500 flex flex-col items-center justify-center p-4 text-center">
-               <BookOpen className="w-10 h-10 text-[var(--gold-primary)] mb-4" />
-               <h3 className="text-white font-bold text-sm mb-2">Digital Product<br/>Starter Kit</h3>
-               <span className="text-[var(--gold-primary)] text-xs font-mono">100% FREE</span>
+            <div className="relative w-52 h-72 shadow-[0_0_50px_rgba(212,175,55,0.2)] -rotate-6 hover:rotate-0 transition-transform duration-500 rounded-xl overflow-hidden border-2 border-[var(--gold-primary)]/50">
+               <Image 
+                 src="/ebook-cover-free.jpg" 
+                 alt="Pain to Cash Free E-book" 
+                 fill
+                 className="object-cover"
+               />
             </div>
           </div>
         </FadeIn>
@@ -152,7 +155,7 @@ export default function Home() {
                 title: "Class A: First Step in Journey", 
                 desc: "E-book สอนหาเงินก้อนแรกจาก Digital Product (หา Pain Point > เช็ค Demand > สร้าง > ขาย)", 
                 price: "99",
-                oldPrice: "990",
+                oldPrice: "590",
                 badge: "100 ท่านแรกเท่านั้น!"
               },
               { 
@@ -224,27 +227,27 @@ export default function Home() {
               <div className="w-12 h-12 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] rounded-full flex items-center justify-center mb-4">
                 <span className="font-black text-xl">1</span>
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">Done-for-You Sales Script</h3>
-              <p className="text-neutral-400 text-sm mb-4">สคริปต์ปิดการขาย แค่ก๊อปวางก็เปลี่ยนลูกค้าทักเป็นโอนได้ทันที</p>
-              <p className="text-[var(--gold-primary)] text-sm font-bold">มูลค่า 4,900.- (ฟรี)</p>
+              <h3 className="text-white font-bold text-lg mb-2">Framework หา Pain Point</h3>
+              <p className="text-neutral-400 text-sm mb-4">เฟรมเวิร์กวิเคราะห์ปัญหาของลูกค้า ช่วยให้คุณเจอจุดเจ็บที่แท้จริงที่พร้อมจ่ายเงินแก้ปัญหา</p>
+              <p className="text-[var(--gold-primary)] text-sm font-bold">มูลค่า 1,290.- (ฟรี)</p>
             </FadeIn>
             {/* Bonus 2 */}
             <FadeIn direction="up" delay={0.2} className="bg-[#111] p-6 rounded-2xl border border-dashed border-[var(--gold-primary)]/50">
               <div className="w-12 h-12 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] rounded-full flex items-center justify-center mb-4">
                 <span className="font-black text-xl">2</span>
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">100 Viral Hook Templates</h3>
-              <p className="text-neutral-400 text-sm mb-4">รวมไอเดียพาดหัวหยุดนิ้ว ทำคอนเทนต์ได้ 100 วันไม่ต้องคิดเอง</p>
-              <p className="text-[var(--gold-primary)] text-sm font-bold">มูลค่า 2,900.- (ฟรี)</p>
+              <h3 className="text-white font-bold text-lg mb-2">Framework ปิดการขาย 1 หน้า</h3>
+              <p className="text-neutral-400 text-sm mb-4">โครงสร้างเซลล์เพจแบบสั้นกระชับ ปิดการขายได้ในหน้าเดียวโดยไม่ต้องคอยตอบแชท</p>
+              <p className="text-[var(--gold-primary)] text-sm font-bold">มูลค่า 1,590.- (ฟรี)</p>
             </FadeIn>
             {/* Bonus 3 */}
             <FadeIn direction="up" delay={0.3} className="bg-[#111] p-6 rounded-2xl border border-dashed border-[var(--gold-primary)]/50">
               <div className="w-12 h-12 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] rounded-full flex items-center justify-center mb-4">
                 <span className="font-black text-xl">3</span>
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">1-on-1 Private Consult</h3>
-              <p className="text-neutral-400 text-sm mb-4">ให้คำปรึกษาแบบตัวต่อตัว ช่วยวางแผนและแก้ปัญหาให้ธุรกิจของคุณโดยเฉพาะ</p>
-              <p className="text-[var(--gold-primary)] text-sm font-bold">มูลค่า 15,000.- (ฟรี)</p>
+              <h3 className="text-white font-bold text-lg mb-2">Hook Template 30 อัน (5-6 หมวด)</h3>
+              <p className="text-neutral-400 text-sm mb-4">เทมเพลตพาดหัวหยุดนิ้ว 30 รูปแบบ ครอบคลุม 5-6 หมวดหมู่ เอาไปปรับใช้ได้ทันทีไม่ต้องคิดเอง</p>
+              <p className="text-[var(--gold-primary)] text-sm font-bold">มูลค่า 590.- (ฟรี)</p>
             </FadeIn>
           </div>
         </div>
@@ -369,27 +372,30 @@ export default function Home() {
             <div className="space-y-4 mb-8">
               <div className="flex justify-between items-center border-b border-white/10 pb-4">
                 <span className="text-white font-bold text-lg flex items-center gap-2"><Package className="w-5 h-5 text-[var(--gold-primary)]"/> Class A: First Step in Journey</span>
-                <span className="text-neutral-400">มูลค่า 990.-</span>
+                <span className="text-neutral-400">มูลค่า 590.-</span>
               </div>
               <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                <span className="text-[var(--gold-primary)] font-bold text-lg flex items-center gap-2"><Plus className="w-4 h-4"/> Done-for-You Sales Script</span>
-                <span className="text-neutral-400">มูลค่า 4,900.-</span>
+                <span className="text-[var(--gold-primary)] font-bold text-lg flex items-center gap-2"><Plus className="w-4 h-4"/> Framework หา Pain Point</span>
+                <span className="text-neutral-400">มูลค่า 1,290.-</span>
               </div>
               <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                <span className="text-[var(--gold-primary)] font-bold text-lg flex items-center gap-2"><Plus className="w-4 h-4"/> 100 Viral Hook Templates</span>
-                <span className="text-neutral-400">มูลค่า 2,900.-</span>
+                <span className="text-[var(--gold-primary)] font-bold text-lg flex items-center gap-2"><Plus className="w-4 h-4"/> Framework ปิดการขาย 1 หน้า</span>
+                <span className="text-neutral-400">มูลค่า 1,590.-</span>
               </div>
               <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                <span className="text-[var(--gold-primary)] font-bold text-lg flex items-center gap-2"><Plus className="w-4 h-4"/> 1-on-1 Private Consult</span>
-                <span className="text-neutral-400">มูลค่า 15,000.-</span>
+                <span className="text-[var(--gold-primary)] font-bold text-lg flex items-center gap-2"><Plus className="w-4 h-4"/> Hook Template 30 อัน (5-6 หมวด)</span>
+                <span className="text-neutral-400">มูลค่า 590.-</span>
               </div>
             </div>
             <div className="flex flex-col items-center justify-center text-center">
               <p className="text-neutral-400 mb-2">รวมมูลค่าทั้งหมด</p>
-              <p className="text-3xl font-black text-red-500 line-through mb-4">23,790 บาท</p>
+              <p className="text-3xl font-black text-red-500 line-through mb-4">4,060 บาท</p>
               <p className="text-xl text-white mb-2">แต่วันนี้คุณจ่ายเพียง</p>
-              <p className="text-6xl font-black text-[var(--gold-primary)] drop-shadow-[0_0_20px_rgba(212,175,55,0.5)]">
-                299 บาท
+              <p className="text-6xl font-black text-[var(--gold-primary)] drop-shadow-[0_0_20px_rgba(212,175,55,0.5)] mb-2">
+                99 บาท
+              </p>
+              <p className="text-sm font-bold text-red-500 bg-red-500/10 px-4 py-1.5 rounded-full inline-block border border-red-500/20">
+                จำกัดสิทธิ์เฉพาะ 100 ท่านแรกเท่านั้น!
               </p>
             </div>
           </FadeIn>

@@ -25,10 +25,16 @@ export default function FreeDownloadPage() {
             <div className="flex items-start gap-4">
               <BookOpen className="w-8 h-8 text-[var(--gold-primary)] shrink-0 mt-1" />
               <div>
-                <h3 className="text-white font-bold text-xl mb-2">Digital Product Starter Kit (E-Book)</h3>
+                <h3 className="text-white font-bold text-xl mb-2">Pain to Cash: จับปัญหาให้เป็นเงิน (E-Book)</h3>
                 <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
-                  เนื้อหาพื้นฐานสำหรับการจับเงินก้อนแรกบนโลกออนไลน์ สอนวิธีคิดและการหา Pain Point ของตลาดเพื่อสร้างสินค้าดิจิทัล
+                  คู่มือค้นหา Pain Point ที่คนยอมจ่าย ด้วย Framework, Prompt, และเครื่องมือต่างๆ สำหรับนักคิด นักสร้าง และนักธุรกิจยุคใหม่
                 </p>
+                <ul className="text-neutral-400 text-sm mb-6 space-y-2">
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[var(--gold-primary)] shrink-0 mt-0.5" /> ค้นหา Pain Point ที่แท้จริงของกลุ่มเป้าหมาย</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[var(--gold-primary)] shrink-0 mt-0.5" /> Framework ช่วยคิดเป็นระบบ ไม่พลาดทุกมุม</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[var(--gold-primary)] shrink-0 mt-0.5" /> Prompt ตัวช่วย AI ถามให้ถูก ตอบคุ้มค่า</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[var(--gold-primary)] shrink-0 mt-0.5" /> เครื่องมือต่างๆ ที่ต้องใช้ ใช้ฟรี! หรือใช้คุ้มๆ</li>
+                </ul>
                 <button 
                   onClick={() => alert("กำลังพัฒนาระบบไฟล์ดาวน์โหลด... (เชื่อม Google Drive เร็วๆนี้)")}
                   className="inline-flex items-center gap-2 bg-white text-black font-bold px-6 py-2 rounded-lg hover:bg-[var(--gold-primary)] transition-colors text-sm"

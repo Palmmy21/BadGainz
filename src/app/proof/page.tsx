@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import FadeIn from "@/components/FadeIn";
 import { Star, TrendingUp, Quote } from "lucide-react";
@@ -63,25 +64,27 @@ export default function ProofPage() {
         <FadeIn direction="up" delay={0.2} className="mb-24">
           <div className="bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-[var(--gold-primary)]/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(212,175,55,0.1)] relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
              <div className="absolute top-0 left-0 w-2 h-full bg-[var(--gold-primary)]" />
-             <div className="w-full md:w-1/2 aspect-video bg-black rounded-xl border border-white/10 flex items-center justify-center relative group">
-                <span className="text-neutral-600 font-mono">Video Interview Placeholder</span>
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
-                   <div className="w-16 h-16 bg-[var(--gold-primary)] rounded-full flex items-center justify-center pl-1">
-                      <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z" /></svg>
-                   </div>
-                </div>
+             <div className="w-full md:w-1/2 aspect-video bg-neutral-900 rounded-xl border border-white/10 flex items-center justify-center relative overflow-hidden group">
+                {/* Fallback text while image is loading or missing */}
+                <span className="text-neutral-600 font-mono text-sm absolute z-0">รออัปโหลดรูปหน้าเว็บ HorCare</span>
+                <Image 
+                  src="/horcare-preview.png" 
+                  alt="HorCare Dashboard" 
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 z-10"
+                />
              </div>
              <div className="w-full md:w-1/2">
                 <div className="flex gap-1 mb-4">
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 text-[var(--gold-primary)] fill-[var(--gold-primary)]" />)}
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">"จากยอดวิวน้อย สู่รายได้เสริมที่มั่นคง"</h3>
+                <h3 className="text-3xl font-bold text-white mb-4">"จาก 0 ถึง 100 ธุรกิจในไม่ถึงปี"</h3>
                 <p className="text-neutral-400 mb-6 text-lg leading-relaxed italic">
-                  "เทคนิค Content to Cash สอนให้ผมเลิกโฟกัสแค่ยอดไลค์ แต่ให้โฟกัสที่การแก้ปัญหาให้กลุ่มเป้าหมายจริงๆ พอใช้คู่กับระบบ Automation ตอนนี้ผมมีเวลาทำคอนเทนต์มากขึ้น และมีรายได้จาก E-book เข้ามาซัพพอร์ตทุกสัปดาห์ครับ"
+                  "HorCare เป็นสินค้าตัวแรกที่สามารถสร้างลูกค้าจริงได้ในไม่กี่สัปดาห์ จนมีหอพักจริงในระบบถึง 100 เจ้า ภายในระยะเวลาไม่ถึงปี นี่คือเครื่องพิสูจน์ว่าหากเราสร้างโปรดักต์ที่แก้ Pain Point ได้ถูกจุด ตลาดก็พร้อมที่จะจ่ายให้คุณ"
                 </p>
                 <div>
-                  <p className="text-white font-bold">คุณบาส</p>
-                  <p className="text-[var(--gold-primary)] text-sm">Content Creator</p>
+                  <p className="text-white font-bold">Palm Sakdidech</p>
+                  <p className="text-[var(--gold-primary)] text-sm">Founder of Badgainz & HorCare</p>
                 </div>
              </div>
           </div>
