@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Badgainz | เริ่มต้นสร้างรายได้ออนไลน์ ด้วย Digital Products",
     description: "เรียนรู้การสร้าง digital products แบบมือโปร เริ่มต้นสร้างรายได้ออนไลน์ด้วยระบบ Automation",
     images: [{
-      url: '/badgainz-logo.png',
+      url: '/badgainz-meta.jpg',
       width: 1200,
       height: 630,
       alt: 'Badgainz - เริ่มต้นสร้างธุรกิจออนไลน์'
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Badgainz | เริ่มต้นสร้างรายได้ออนไลน์ ด้วย Digital Products",
     description: "เรียนรู้การสร้าง digital products แบบมือโปร เริ่มต้นสร้างรายได้ออนไลน์ด้วยระบบ Automation",
-    images: ['/badgainz-logo.png'],
+    images: ['/badgainz-meta.jpg'],
   },
 };
 
