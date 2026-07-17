@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     description: "เรียนรู้การสร้าง digital products แบบมือโปร เริ่มต้นสร้างรายได้ออนไลน์ด้วยระบบ Automation",
     images: ['/badgainz-meta.jpg'],
   },
+  verification: {
+    google: 'is3R3b0jDhti7UKit2pi4GkxO2OFCQ0xwdqHeUWvlws',
+  },
 };
 
 import Footer from "@/components/Footer";
