@@ -93,7 +93,7 @@ export default function ServicesPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">HorCare (ระบบบริหารหอพัก)</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
-                  Web Application บริหารหอพักครบวงจร <strong className="text-white">มีหอพักใช้งานจริงกว่า 50 แห่ง</strong> ช่วยเจ้าของหอพัก <strong className="text-white">ลดเวลาเก็บค่าเช่าได้กว่า 80%</strong> ด้วยระบบสร้างบิลและรับชำระอัตโนมัติ
+                  Web Application บริหารหอพักครบวงจร <strong className="text-white">มีหอพักใช้งานจริงมากกว่า 100 แห่ง</strong> ช่วยเจ้าของหอพัก <strong className="text-white">ลดเวลาเก็บค่าเช่าได้กว่า 80%</strong> ด้วยระบบสร้างบิลและรับชำระอัตโนมัติ
                 </p>
                 <a href="https://horcare-landing.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all mt-auto">
                   ดูผลงานจริง <ArrowRight className="w-4 h-4" />
