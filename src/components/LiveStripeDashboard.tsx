@@ -71,7 +71,7 @@ export default function LiveStripeDashboard() {
             ไม่ว่าคุณจะนอนหลับ ไปเที่ยว หรือทำอะไรอยู่ก็ตาม ระบบ Automation ของเราจะทำหน้าที่ "ปิดการขาย" แทนคุณ
           </p>
           <Link 
-            href="/checkout"
+            href="/#class-a"
             className="inline-block px-8 py-4 font-bold text-black bg-[var(--gold-primary)] rounded-md hover:bg-yellow-500 transition-colors shadow-[0_0_20px_rgba(212,175,55,0.2)] text-lg"
           >
             สร้างระบบแบบนี้ให้ธุรกิจคุณ

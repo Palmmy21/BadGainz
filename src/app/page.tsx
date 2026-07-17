@@ -407,7 +407,7 @@ export default function Home() {
       </section>
 
       {/* VALUE STACK SECTION */}
-      <section className="py-24 px-6 sm:px-20 relative z-10 bg-black/40 border-y border-white/5 backdrop-blur-md">
+      <section id="class-a" className="py-24 px-6 sm:px-20 relative z-10 bg-black/40 border-y border-white/5 backdrop-blur-md">
         <div className="max-w-4xl mx-auto">
           <FadeIn direction="up" className="bg-gradient-to-b from-[#111] to-[#0a0a0a] border-2 border-[var(--gold-primary)]/50 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-[0_0_50px_rgba(212,175,55,0.1)]">
             <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-10">

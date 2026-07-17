@@ -79,45 +79,68 @@ export default function ServicesPage() {
             <p className="text-neutral-400">ระบบจริงที่มีผู้ใช้งานจริง และทำรายได้จริง</p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Project 1 */}
-            <FadeIn direction="up" delay={0.1} className="bg-[#111] border border-white/10 rounded-3xl overflow-hidden group hover:border-[var(--gold-primary)]/30 transition-all">
+            <FadeIn direction="up" delay={0.1} className="bg-[#111] border border-white/10 rounded-3xl overflow-hidden group hover:border-[var(--gold-primary)]/30 transition-all flex flex-col">
               <div className="aspect-video relative bg-neutral-900 overflow-hidden">
                 <Image src="/horcare-preview.png" alt="HorCare SaaS" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
-              <div className="p-8">
+              <div className="p-8 flex-1 flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded-full border border-blue-500/20">SaaS Platform</span>
+                  <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded-full border border-blue-500/20">SaaS</span>
                   <span className="px-3 py-1 bg-green-500/10 text-green-400 text-xs font-bold rounded-full border border-green-500/20">Fullstack</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3">HorCare (ระบบบริหารหอพัก)</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-                  Web Application แบบ SaaS (Software as a Service) สำหรับเจ้าของหอพัก มีระบบ Login, Dashboard, สร้างบิล, รับชำระเงิน และระบบจัดการผู้เช่าแบบครบวงจร
+                <h3 className="text-xl font-bold text-white mb-3">HorCare (ระบบบริหารหอพัก)</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
+                  Web Application แบบ SaaS สำหรับเจ้าของหอพัก มีระบบ Login, Dashboard, สร้างบิล, รับชำระเงิน และระบบจัดการผู้เช่าแบบครบวงจร
                 </p>
-                <a href="https://horcare-landing.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all">
+                <a href="https://horcare-landing.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all mt-auto">
                   ดูผลงานจริง <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </FadeIn>
 
             {/* Project 2 */}
-            <FadeIn direction="up" delay={0.2} className="bg-[#111] border border-white/10 rounded-3xl overflow-hidden group hover:border-[var(--gold-primary)]/30 transition-all">
+            <FadeIn direction="up" delay={0.2} className="bg-[#111] border border-white/10 rounded-3xl overflow-hidden group hover:border-[var(--gold-primary)]/30 transition-all flex flex-col">
               <div className="aspect-video relative bg-neutral-900 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-black to-neutral-900 flex items-center justify-center flex-col">
-                   <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-primary)] to-yellow-200 uppercase tracking-widest drop-shadow-md">BADGAINZ</h1>
-                   <p className="text-neutral-400 mt-2 text-sm tracking-widest">DIGITAL PRODUCT PLATFORM</p>
+                   <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-primary)] to-yellow-200 uppercase tracking-widest drop-shadow-md">BADGAINZ</h1>
+                   <p className="text-neutral-400 mt-2 text-[10px] tracking-widest">DIGITAL PLATFORM</p>
                 </div>
               </div>
-              <div className="p-8">
-                <div className="flex items-center gap-2 mb-3">
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
                   <span className="px-3 py-1 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] text-xs font-bold rounded-full border border-[var(--gold-primary)]/20">Landing Page</span>
                   <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs font-bold rounded-full border border-purple-500/20">E-Commerce</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3">Badgainz Platform</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-                  หน้าเว็บขาย Digital Product ที่เน้น High-Conversion มีระบบตัดบัตรอัตโนมัติ (Stripe Integration) และ Webhook เชื่อมต่อการส่งของอัตโนมัติ
+                <h3 className="text-xl font-bold text-white mb-3">Badgainz Platform</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
+                  หน้าเว็บขาย Digital Product ที่เน้น High-Conversion มีระบบตัดบัตรอัตโนมัติ (Stripe) และ Webhook เชื่อมต่อการส่งของอัตโนมัติ
                 </p>
-                <a href="/" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all">
+                <a href="/" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all mt-auto">
+                  ดูผลงานจริง <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </FadeIn>
+
+            {/* Project 3 */}
+            <FadeIn direction="up" delay={0.3} className="bg-[#111] border border-white/10 rounded-3xl overflow-hidden group hover:border-[var(--gold-primary)]/30 transition-all flex flex-col">
+              <div className="aspect-video relative bg-neutral-900 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-black flex items-center justify-center flex-col border-b-2 border-red-600 group-hover:scale-105 transition-transform duration-700">
+                   <h1 className="text-3xl font-black text-white uppercase tracking-widest drop-shadow-md">BLACK<span className="text-red-600">ACE</span></h1>
+                   <p className="text-red-600 mt-2 text-[10px] tracking-widest font-bold">ZACK PUTTIPONG</p>
+                </div>
+              </div>
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
+                  <span className="px-3 py-1 bg-red-500/10 text-red-400 text-xs font-bold rounded-full border border-red-500/20">Personal Branding</span>
+                  <span className="px-3 py-1 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] text-xs font-bold rounded-full border border-[var(--gold-primary)]/20">Landing Page</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">BlackAce (เว็บโปรไฟล์)</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
+                  หน้าเว็บโปรไฟล์สำหรับ Content Creator เน้นดีไซน์ดุดัน (Dark Theme) สไตล์ Black & Red พร้อมส่วนแนะนำคอร์สเรียนและผลงานที่ผ่านมา
+                </p>
+                <a href="https://blackace-five.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold hover:gap-3 transition-all mt-auto">
                   ดูผลงานจริง <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
