@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -5,8 +7,11 @@ import SalesNotification from "@/components/SalesNotification";
 import FadeIn from "@/components/FadeIn";
 import LiveStripeDashboard from "@/components/LiveStripeDashboard";
 import { Gift, BookOpen, CheckCircle, XCircle, Plus, Package } from "lucide-react";
+import { useABTesting } from "@/hooks/useABTesting";
 
 export default function Home() {
+  const { variant, trackConversion } = useABTesting("hero_headline_v1");
+
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-[var(--background)]">
       <Navbar />
@@ -19,9 +24,18 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center pt-40 pb-20 px-6 sm:px-20 z-10">
         <FadeIn direction="up" delay={0.2} className="flex flex-col gap-12 items-center text-center max-w-4xl">
-          <h1 className="text-5xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-400 drop-shadow-lg leading-tight relative">
-            ไม่ใช่ว่าคุณขายไม่ได้ <br />
-            แต่คุณแค่ยังไม่รู้ว่า<span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-primary)] to-yellow-200">ตลาดต้องการอะไร</span>
+          <h1 className="text-5xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-400 drop-shadow-lg leading-tight relative min-h-[150px]">
+            {variant === "B" ? (
+              <>
+                สร้างระบบทำเงินอัตโนมัติ 24 ชม. <br />
+                ด้วย <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-primary)] to-yellow-200">Digital Product</span>
+              </>
+            ) : (
+              <>
+                ไม่ใช่ว่าคุณขายไม่ได้ <br />
+                แต่คุณแค่ยังไม่รู้ว่า<span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-primary)] to-yellow-200">ตลาดต้องการอะไร</span>
+              </>
+            )}
           </h1>
 
           <p className="text-neutral-400 text-lg sm:text-xl max-w-2xl font-light leading-relaxed relative">
@@ -32,6 +46,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto relative">
             <Link 
               href="#products"
+              onClick={() => trackConversion("hero_cta_clicked", { target: "#products" })}
               className="group relative inline-flex items-center justify-center gap-2 px-10 py-5 font-bold text-black bg-gradient-to-r from-[var(--gold-primary)] to-yellow-500 rounded-md overflow-hidden transition-transform hover:scale-105 active:scale-95 text-lg"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
@@ -194,7 +209,8 @@ export default function Home() {
                 desc: "E-book สอนหาเงินก้อนแรกจาก Digital Product (หา Pain Point > เช็ค Demand > สร้าง > ขาย)", 
                 price: "99",
                 oldPrice: "590",
-                badge: "100 ท่านแรกเท่านั้น!"
+                badge: "100 ท่านแรกเท่านั้น!",
+                soldCount: "21/100"
               },
               { 
                 title: "Class A: Content to Cash", 
@@ -210,7 +226,7 @@ export default function Home() {
                 oldPrice: "2,990",
                 comingSoon: true
               },
-            ] as {title: string, desc: string, price: string, oldPrice: string, comingSoon?: boolean, badge?: string}[]).map((item, idx) => (
+            ] as {title: string, desc: string, price: string, oldPrice: string, comingSoon?: boolean, badge?: string, soldCount?: string}[]).map((item, idx) => (
               <FadeIn key={idx} direction="up" delay={0.2 + idx * 0.1} className={`bg-[#111] border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 group ${item.comingSoon ? 'opacity-50 grayscale cursor-not-allowed' : 'hover:border-[var(--gold-primary)]/50 hover:-translate-y-2'}`}>
                 <div className="aspect-[4/3] bg-neutral-900 relative overflow-hidden flex items-center justify-center">
                   {idx === 0 ? (
@@ -231,7 +247,25 @@ export default function Home() {
                     </div>
                   )}
                   <h3 className={`text-xl font-bold text-white mb-3 transition-colors ${!item.comingSoon && 'group-hover:text-[var(--gold-primary)]'}`}>{item.title}</h3>
-                  <p className="text-neutral-400 text-sm mb-8 leading-relaxed h-12">{item.desc}</p>
+                  <p className="text-neutral-400 text-sm mb-6 leading-relaxed h-12">{item.desc}</p>
+                  
+                  {item.soldCount && (
+                    <div className="mb-6">
+                      <div className="flex justify-between text-xs font-medium text-neutral-400 mb-2">
+                        <span className="text-[var(--gold-primary)]">🔥 ขายแล้ว {item.soldCount.split('/')[0]} สิทธิ์</span>
+                        <span>เหลือ {parseInt(item.soldCount.split('/')[1]) - parseInt(item.soldCount.split('/')[0])} สิทธิ์</span>
+                      </div>
+                      <div className="w-full bg-neutral-800 rounded-full h-1.5 overflow-hidden">
+                        <div 
+                          className="bg-gradient-to-r from-yellow-600 to-[var(--gold-primary)] h-1.5 rounded-full relative" 
+                          style={{ width: `${(parseInt(item.soldCount.split('/')[0]) / parseInt(item.soldCount.split('/')[1])) * 100}%` }}
+                        >
+                          <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="flex justify-between items-end">
                     <div>
                       <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">Price</p>

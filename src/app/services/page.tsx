@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import FadeIn from "@/components/FadeIn";
 import { CheckCircle, ArrowRight, Code, Layout, Database, Send } from "lucide-react";
 
@@ -250,6 +251,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <Footer />
     </div>
   );
 }

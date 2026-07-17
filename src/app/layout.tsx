@@ -42,6 +42,10 @@ export const metadata: Metadata = {
   },
 };
 
+import Footer from "@/components/Footer";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
+import { Suspense } from "react";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,7 +56,12 @@ export default function RootLayout({
       lang="th"
       className={`${kanit.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Suspense fallback={null}>
+          <AnalyticsTracker />
+        </Suspense>
+        {children}
+      </body>
     </html>
   );
 }
