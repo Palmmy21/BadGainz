@@ -16,9 +16,9 @@ const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Initialize Analytics conditionally (only in browser and if supported)
+// Initialize Analytics conditionally (only in browser, if supported, and with a real API key)
 let analytics: ReturnType<typeof getAnalytics> | null = null;
-if (typeof window !== "undefined") {
+if (typeof window !== "undefined" && firebaseConfig.apiKey !== "AIzaSyDummyKeyForBuildPhaseOnly12345678") {
   isSupported().then((yes) => yes && (analytics = getAnalytics(app)));
 }
 

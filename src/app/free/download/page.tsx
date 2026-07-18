@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Download, BookOpen, ChevronRight, CheckCircle } from "lucide-react";
+import Image from "next/image";
+import { Download, ChevronRight, CheckCircle } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
 export default function FreeDownloadPage() {
@@ -22,10 +23,17 @@ export default function FreeDownloadPage() {
           </p>
 
           <div className="bg-black/40 border border-white/5 rounded-2xl p-6 sm:p-8 mb-10 text-left">
-            <div className="flex items-start gap-4">
-              <BookOpen className="w-8 h-8 text-[var(--gold-primary)] shrink-0 mt-1" />
-              <div>
-                <h3 className="text-white font-bold text-xl mb-2">Pain to Cash: จับปัญหาให้เป็นเงิน (E-Book)</h3>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
+              <div className="relative w-40 h-56 shrink-0 shadow-lg rounded-xl overflow-hidden border border-[var(--gold-primary)]/30">
+                <Image 
+                  src="/ebook-cover-free.jpg" 
+                  alt="Pain to Cash Free E-book" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex-1 w-full">
+                <h3 className="text-white font-bold text-xl mb-2 text-center sm:text-left">Pain to Cash: จับปัญหาให้เป็นเงิน (E-Book)</h3>
                 <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
                   คู่มือค้นหา Pain Point ที่คนยอมจ่าย ด้วย Framework, Prompt, และเครื่องมือต่างๆ สำหรับนักคิด นักสร้าง และนักธุรกิจยุคใหม่
                 </p>
@@ -35,13 +43,16 @@ export default function FreeDownloadPage() {
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[var(--gold-primary)] shrink-0 mt-0.5" /> Prompt ตัวช่วย AI ถามให้ถูก ตอบคุ้มค่า</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-[var(--gold-primary)] shrink-0 mt-0.5" /> เครื่องมือต่างๆ ที่ต้องใช้ ใช้ฟรี! หรือใช้คุ้มๆ</li>
                 </ul>
-                <button 
-                  onClick={() => alert("กำลังพัฒนาระบบไฟล์ดาวน์โหลด... (เชื่อม Google Drive เร็วๆนี้)")}
+                <a 
+                  href="/Pain-to-Cash.pdf"
+                  download="Pain-to-Cash-Ebook.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-black font-bold px-6 py-2 rounded-lg hover:bg-[var(--gold-primary)] transition-colors text-sm"
                 >
                   <Download className="w-4 h-4" />
                   คลิกเพื่อดาวน์โหลด PDF
-                </button>
+                </a>
               </div>
             </div>
           </div>
