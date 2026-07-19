@@ -2,9 +2,15 @@ import { NextResponse } from "next/server";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { WelcomeEmail } from "@/emails/WelcomeEmail";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_EMAIL,
+    pass: process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, ""),
+  },
+});
 
 async function sendTelegramNotification(message: string) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -30,7 +36,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
     }
 
-    // Run all tasks in PARALLEL — client already redirected, so latency doesn't matter
     await Promise.allSettled([
       // 1. Save to Firebase
       addDoc(collection(db, "subscribers"), {
@@ -40,14 +45,16 @@ export async function POST(req: Request) {
         createdAt: serverTimestamp(),
       }),
 
-      // 2. Send Welcome Email via Resend (much better deliverability than Gmail SMTP)
-      resend.emails.send({
-        from: "Palm from BADGAINZ <onboarding@resend.dev>",
+      // 2. Send Welcome Email via Gmail SMTP with anti-spam headers
+      transporter.sendMail({
+        from: `"Palm จาก BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
         to: email,
-        subject: "🎉 ยินดีต้อนรับ! นี่คือ E-Book ของคุณครับ",
+        subject: "🎉 E-Book Pain to Cash ของคุณมาแล้วครับ!",
         html: WelcomeEmail({ name }),
         headers: {
+          "X-Mailer": "BADGAINZ Mailer",
           "List-Unsubscribe": `<mailto:${process.env.GMAIL_EMAIL}?subject=unsubscribe>`,
+          "Precedence": "bulk",
         },
       }),
 
