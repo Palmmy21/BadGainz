@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
     }
 
-    // 1. Save to Firebase
+    // 1. Save to Firebase (fast — do not block on failure)
     try {
       await addDoc(collection(db, "subscribers"), {
         name,
@@ -30,23 +30,21 @@ export async function POST(req: Request) {
       });
     } catch (dbError) {
       console.error("Firebase Error:", dbError);
-      // We continue even if DB fails, to at least try sending the email
+      // Continue even if DB fails
     }
 
-    // 2. Send Welcome Email via Nodemailer (Gmail)
-    try {
-      await transporter.sendMail({
-        from: `"Palm from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
-        to: email, 
-        subject: "🎉 ยินดีต้อนรับ! นี่คือ E-Book ของคุณครับ",
-        html: WelcomeEmail({ name }),
-      });
-    } catch (emailError) {
-      console.error("Resend Error:", emailError);
-      return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
-    }
+    // 2. Send Welcome Email in background — do NOT await, so user is redirected instantly
+    transporter.sendMail({
+      from: `"Palm from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
+      to: email,
+      subject: "🎉 ยินดีต้อนรับ! นี่คือ E-Book ของคุณครับ",
+      html: WelcomeEmail({ name }),
+    }).catch((emailError) => {
+      console.error("Email send error (background):", emailError);
+    });
 
-    return NextResponse.json({ success: true, message: "Subscribed and email sent" });
+    // Return success immediately — don't wait for email
+    return NextResponse.json({ success: true, message: "Subscribed" });
   } catch (error) {
     console.error("Subscribe Error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
