@@ -15,24 +15,16 @@ export default function FreeOptinPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
 
-      if (res.ok) {
-        router.push("/free/download");
-      } else {
-        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
-        setIsSubmitting(false);
-      }
-    } catch (error) {
-      alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
-      setIsSubmitting(false);
-    }
+    // Fire API in background — don't await, redirect immediately
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    }).catch(() => {});
+
+    // Redirect instantly without waiting for API
+    router.push("/free/download");
   };
 
   return (
