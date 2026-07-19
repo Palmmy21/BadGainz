@@ -281,13 +281,13 @@ export default function ServicesPage() {
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {clientCategories.map((cat, i) => (
-              <FadeIn key={cat.id} direction="up" delay={i * 0.1}>
-                <div className="bg-[#111] border border-white/10 rounded-2xl p-7 hover:border-[var(--gold-primary)]/30 transition-all group">
-                  <div className="w-12 h-12 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[var(--gold-primary)] group-hover:text-black transition-all">
+              <FadeIn key={cat.id} direction="up" delay={i * 0.1} className="h-full">
+                <div className="h-full bg-[#111] border border-white/10 rounded-2xl p-7 hover:border-[var(--gold-primary)]/30 transition-all group flex flex-col">
+                  <div className="w-12 h-12 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[var(--gold-primary)] group-hover:text-black transition-all shrink-0">
                     {cat.icon}
                   </div>
                   <h3 className="text-white font-bold text-lg mb-2">{cat.label}</h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed">{cat.desc}</p>
+                  <p className="text-neutral-400 text-sm leading-relaxed flex-1">{cat.desc}</p>
                 </div>
               </FadeIn>
             ))}
@@ -575,10 +575,12 @@ export default function ServicesPage() {
                       className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--gold-primary)]/50 transition-colors appearance-none text-sm"
                     >
                       <option value="">-- เลือกงบประมาณ --</option>
-                      <option value="5k-15k">5,000 – 15,000 บาท</option>
-                      <option value="15k-50k">15,000 – 50,000 บาท</option>
-                      <option value="50k-100k">50,000 – 100,000 บาท</option>
-                      <option value="100k+">100,000 บาท ขึ้นไป</option>
+                      <option value="under-2k">ต่ำกว่า 2,000 บาท</option>
+                      <option value="2k-5k">2,000 – 5,000 บาท</option>
+                      <option value="5k-10k">5,000 – 10,000 บาท</option>
+                      <option value="10k-30k">10,000 – 30,000 บาท</option>
+                      <option value="30k-50k">30,000 – 50,000 บาท</option>
+                      <option value="50k+">50,000 บาท ขึ้นไป</option>
                       <option value="unknown">ยังไม่แน่ใจ / ขอ Estimate</option>
                     </select>
                   </div>
