@@ -8,9 +8,25 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.GMAIL_EMAIL,
-    pass: process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, ""), // Remove spaces if any
+    pass: process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, ""),
   },
 });
+
+async function sendTelegramNotification(message: string) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+
+  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+      parse_mode: "HTML",
+    }),
+  });
+}
 
 export async function POST(req: Request) {
   try {
@@ -30,10 +46,9 @@ export async function POST(req: Request) {
       });
     } catch (dbError) {
       console.error("Firebase Error:", dbError);
-      // Continue even if DB fails
     }
 
-    // 2. Send Welcome Email in background — do NOT await, so user is redirected instantly
+    // 2. Send Welcome Email in background
     transporter.sendMail({
       from: `"Palm from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
       to: email,
@@ -43,7 +58,16 @@ export async function POST(req: Request) {
       console.error("Email send error (background):", emailError);
     });
 
-    // Return success immediately — don't wait for email
+    // 3. Notify Telegram in background
+    sendTelegramNotification(
+      `📚 <b>มีคนรับ E-Book ใหม่!</b>\n\n` +
+      `👤 <b>ชื่อ:</b> ${name}\n` +
+      `📧 <b>Email:</b> ${email}`
+    ).catch((err) => {
+      console.error("Telegram notify error:", err);
+    });
+
+    // Return success immediately
     return NextResponse.json({ success: true, message: "Subscribed" });
   } catch (error) {
     console.error("Subscribe Error:", error);

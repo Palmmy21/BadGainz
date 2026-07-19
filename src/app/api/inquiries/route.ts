@@ -1,9 +1,22 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
+async function sendTelegramNotification(message: string) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+
+  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+      parse_mode: 'HTML',
+    }),
+  });
+}
 
 export async function POST(req: Request) {
   try {
@@ -22,30 +35,21 @@ export async function POST(req: Request) {
       budget,
       details,
       createdAt: serverTimestamp(),
-      status: 'new' // To track lead status
+      status: 'new',
     });
 
-    // 2. Send Email Notification via Resend (Optional but recommended)
-    try {
-      await resend.emails.send({
-        from: "Badgainz Team <onboarding@resend.dev>", // TODO: Replace with your domain
-        to: ["your-email@example.com"], // TODO: Replace with your actual receiving email
-        subject: `[New Lead] สนใจทำเว็บ: ${name}`,
-        html: `
-          <h2>มีลูกค้าใหม่สนใจทำระบบครับ!</h2>
-          <p><strong>ชื่อ:</strong> ${name}</p>
-          <p><strong>ติดต่อ:</strong> ${contact}</p>
-          <p><strong>ประเภทงาน:</strong> ${projectType}</p>
-          <p><strong>งบประมาณ:</strong> ${budget}</p>
-          <p><strong>รายละเอียด:</strong> ${details}</p>
-          <hr/>
-          <p>ล็อกอินเข้า Firebase เพื่อดูข้อมูลเพิ่มเติม หรือติดต่อลูกค้าทางไลน์ได้เลยครับ</p>
-        `
-      });
-    } catch (emailError) {
-      console.error("Failed to send email notification:", emailError);
-      // We don't fail the request if just the email fails
-    }
+    // 2. Send Telegram Notification (background — don't block response)
+    const message =
+      `🔔 <b>มีลูกค้าใหม่สนใจทำระบบ!</b>\n\n` +
+      `👤 <b>ชื่อ:</b> ${name}\n` +
+      `📞 <b>ติดต่อ:</b> ${contact}\n` +
+      `🛠 <b>ประเภทงาน:</b> ${projectType || '-'}\n` +
+      `💰 <b>งบประมาณ:</b> ${budget || '-'}\n` +
+      `📝 <b>รายละเอียด:</b> ${details || '-'}`;
+
+    sendTelegramNotification(message).catch((err) => {
+      console.error('Telegram notify error:', err);
+    });
 
     return NextResponse.json({ success: true, id: docRef.id }, { status: 200 });
 
