@@ -9,7 +9,7 @@ import FadeIn from "@/components/FadeIn";
 import {
   CheckCircle, ArrowRight, Send, ChevronDown,
   Palette, ShoppingCart, Cpu, Users, Building2, Star,
-  Clock, MessageCircle, Zap, Shield
+  Clock, MessageCircle, Zap, Shield, TrendingUp, Gauge
 } from "lucide-react";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
@@ -22,6 +22,7 @@ const portfolioItems = [
     tags: ["SaaS", "Fullstack", "Web App"],
     tagColors: ["blue", "green", "purple"],
     desc: "Web Application บริหารหอพักครบวงจร มีหอพักใช้งานจริงมากกว่า 100 แห่ง ช่วยเจ้าของหอพักลดเวลาเก็บค่าเช่าได้กว่า 80%",
+    resultIcon: <TrendingUp className="w-3.5 h-3.5" />,
     result: "100+ หอพัก ใช้งานจริง",
     link: "https://horcare-landing.vercel.app/",
     bg: "from-blue-900/40 to-black",
@@ -37,6 +38,7 @@ const portfolioItems = [
     tags: ["Personal Branding", "Landing Page"],
     tagColors: ["red", "gold"],
     desc: "หน้าเว็บโปรไฟล์สำหรับ Content Creator ทำคะแนนความเร็ว PageSpeed ได้ 99/100 ช่วยยกระดับความน่าเชื่อถือให้ Personal Brand แบบพรีเมียม",
+    resultIcon: <Gauge className="w-3.5 h-3.5" />,
     result: "PageSpeed 99/100",
     link: "https://blackace-five.vercel.app/",
     bg: "from-neutral-900 to-black",
@@ -51,6 +53,7 @@ const portfolioItems = [
     tags: ["Landing Page", "E-Commerce", "Digital Product"],
     tagColors: ["gold", "purple", "blue"],
     desc: "หน้าเว็บขาย Digital Product ที่ออกแบบตามหลักจิตวิทยา สร้างยอดขายอัตโนมัติ (Passive Income) ได้ตลอด 24 ชม. โดยไม่ต้องใช้แอดมิน",
+    resultIcon: <Zap className="w-3.5 h-3.5" />,
     result: "Passive Income อัตโนมัติ",
     link: "/",
     bg: "from-yellow-900/30 to-black",
@@ -63,8 +66,8 @@ const portfolioItems = [
 const pricingTiers = [
   {
     name: "Starter",
-    label: "Landing Page / เว็บนามบัตร",
-    price: "5,000 – 15,000",
+    label: "Landing Page / เว็บธุรกิจ",
+    price: "1,990 – 3,990",
     duration: "3–7 วัน",
     icon: <Palette className="w-6 h-6" />,
     color: "from-blue-500/20 to-blue-900/10",
@@ -81,8 +84,8 @@ const pricingTiers = [
   },
   {
     name: "Business",
-    label: "เว็บไซต์ธุรกิจ / E-Commerce",
-    price: "15,000 – 50,000",
+    label: "เว็บธุรกิจ / E-Commerce",
+    price: "4,990 – 9,990",
     duration: "2–4 สัปดาห์",
     icon: <ShoppingCart className="w-6 h-6" />,
     color: "from-[var(--gold-primary)]/20 to-yellow-900/10",
@@ -99,9 +102,9 @@ const pricingTiers = [
     forWho: "SME / ร้านค้าออนไลน์ / แบรนด์",
   },
   {
-    name: "SaaS / Platform",
+    name: "Custom System",
     label: "Web App / ระบบ Custom",
-    price: "50,000+",
+    price: "9,990 – 29,990",
     duration: "1–3 เดือน",
     icon: <Cpu className="w-6 h-6" />,
     color: "from-purple-500/20 to-purple-900/10",
@@ -340,7 +343,10 @@ export default function ServicesPage() {
                   )}
                   {/* Result badge */}
                   <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm border border-white/10 px-3 py-1.5 rounded-full">
-                    <span className="text-xs font-bold text-[var(--gold-primary)]">📈 {project.result}</span>
+                    <span className="flex items-center gap-1.5 text-xs font-bold text-[var(--gold-primary)]">
+                      {project.resultIcon}
+                      {project.result}
+                    </span>
                   </div>
                 </div>
 
@@ -414,8 +420,8 @@ export default function ServicesPage() {
               <FadeIn key={i} direction="up" delay={i * 0.1}>
                 <div className={`relative bg-gradient-to-b ${tier.color} border ${tier.border} rounded-3xl p-8 flex flex-col h-full transition-all hover:-translate-y-1 ${tier.featured ? "shadow-[0_0_40px_rgba(212,175,55,0.15)]" : ""}`}>
                   {tier.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold-primary)] text-black text-xs font-black px-4 py-1 rounded-full whitespace-nowrap">
-                      🔥 ที่นิยมสุด
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold-primary)] text-black text-xs font-black px-4 py-1 rounded-full whitespace-nowrap flex items-center gap-1">
+                      <Zap className="w-3 h-3" /> ที่นิยมสุด
                     </div>
                   )}
                   <div className={`w-12 h-12 ${tier.featured ? "bg-[var(--gold-primary)] text-black" : "bg-white/10 text-white"} rounded-xl flex items-center justify-center mb-5`}>
