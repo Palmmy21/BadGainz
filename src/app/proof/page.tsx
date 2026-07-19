@@ -104,13 +104,13 @@ export default function ProofPage() {
                 <div className="flex gap-1 mb-4">
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 text-red-500 fill-red-500" />)}
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">"ภาพลักษณ์ระดับพรีเมียม โหลดไว 99/100"</h3>
+                <h3 className="text-3xl font-bold text-white mb-4">"เปลี่ยนสกิลที่มี ให้กลายเป็น Digital Product"</h3>
                 <p className="text-neutral-400 mb-6 text-lg leading-relaxed italic">
-                  "หน้าเว็บโปรไฟล์สำหรับ Content Creator ทำคะแนนความเร็ว PageSpeed ได้ 99/100 โหลดไวทะลุจอ ช่วยยกระดับความน่าเชื่อถือให้ Personal Brand แบบพรีเมียม นี่คือตัวอย่างการออกแบบเว็บที่ดึงดูดและสร้างมูลค่าเพิ่มให้กับผู้ใช้งานจริง"
+                  "แซ็คคือลูกศิษย์ที่นำความรู้จากผมไปต่อยอดได้อย่างยอดเยี่ยม เขาเปลี่ยนทักษะและตัวตนให้กลายเป็น Digital Product ระดับพรีเมียม จนสร้างเว็บโปรไฟล์ (PageSpeed 99/100) ที่ดึงดูดลูกค้าและต่อยอดเป็นธุรกิจส่วนตัวที่สร้างรายได้จริง นี่คือผลลัพธ์ของคนที่ลงมือทำจริง"
                 </p>
                 <div>
-                  <p className="text-white font-bold">BlackAce</p>
-                  <p className="text-red-500 text-sm">Personal Branding Portfolio</p>
+                  <p className="text-white font-bold">Zack Puttipong</p>
+                  <p className="text-red-500 text-sm">Founder of BlackAce / Content Creator</p>
                 </div>
              </div>
           </div>
