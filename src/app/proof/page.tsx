@@ -90,6 +90,32 @@ export default function ProofPage() {
           </div>
         </FadeIn>
 
+        {/* Featured Result 2: BlackAce */}
+        <FadeIn direction="up" delay={0.3} className="mb-24">
+          <div className="bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-red-600/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(239,68,68,0.1)] relative overflow-hidden flex flex-col md:flex-row-reverse gap-12 items-center">
+             <div className="absolute top-0 right-0 w-2 h-full bg-red-600" />
+             <div className="w-full md:w-1/2 aspect-video bg-neutral-900 rounded-xl border border-white/10 flex items-center justify-center relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-black flex items-center justify-center flex-col border-b-2 border-red-600 group-hover:scale-105 transition-transform duration-700 z-10">
+                   <h1 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-widest drop-shadow-md">BLACK<span className="text-red-600">ACE</span></h1>
+                   <p className="text-red-600 mt-2 text-xs sm:text-sm tracking-widest font-bold">ZACK PUTTIPONG</p>
+                </div>
+             </div>
+             <div className="w-full md:w-1/2">
+                <div className="flex gap-1 mb-4">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 text-red-500 fill-red-500" />)}
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-4">"ภาพลักษณ์ระดับพรีเมียม โหลดไว 99/100"</h3>
+                <p className="text-neutral-400 mb-6 text-lg leading-relaxed italic">
+                  "หน้าเว็บโปรไฟล์สำหรับ Content Creator ทำคะแนนความเร็ว PageSpeed ได้ 99/100 โหลดไวทะลุจอ ช่วยยกระดับความน่าเชื่อถือให้ Personal Brand แบบพรีเมียม นี่คือตัวอย่างการออกแบบเว็บที่ดึงดูดและสร้างมูลค่าเพิ่มให้กับผู้ใช้งานจริง"
+                </p>
+                <div>
+                  <p className="text-white font-bold">BlackAce</p>
+                  <p className="text-red-500 text-sm">Personal Branding Portfolio</p>
+                </div>
+             </div>
+          </div>
+        </FadeIn>
+
         {/* Grid Results */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {TESTIMONIALS.map((testimonial, idx) => (
