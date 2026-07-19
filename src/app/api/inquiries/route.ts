@@ -27,18 +27,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // 1. Save to Firebase Firestore
-    const docRef = await addDoc(collection(db, 'inquiries'), {
-      name,
-      contact,
-      projectType,
-      budget,
-      details,
-      createdAt: serverTimestamp(),
-      status: 'new',
-    });
-
-    // 2. Send Telegram Notification (background — don't block response)
     const message =
       `🔔 <b>มีลูกค้าใหม่สนใจทำระบบ!</b>\n\n` +
       `👤 <b>ชื่อ:</b> ${name}\n` +
@@ -47,11 +35,21 @@ export async function POST(req: Request) {
       `💰 <b>งบประมาณ:</b> ${budget || '-'}\n` +
       `📝 <b>รายละเอียด:</b> ${details || '-'}`;
 
-    sendTelegramNotification(message).catch((err) => {
-      console.error('Telegram notify error:', err);
-    });
+    // Run Firebase save and Telegram notify in PARALLEL — await both so Vercel doesn't kill early
+    await Promise.allSettled([
+      addDoc(collection(db, 'inquiries'), {
+        name,
+        contact,
+        projectType,
+        budget,
+        details,
+        createdAt: serverTimestamp(),
+        status: 'new',
+      }),
+      sendTelegramNotification(message),
+    ]);
 
-    return NextResponse.json({ success: true, id: docRef.id }, { status: 200 });
+    return NextResponse.json({ success: true }, { status: 200 });
 
   } catch (error) {
     console.error('Inquiry API Error:', error);

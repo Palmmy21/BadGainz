@@ -36,38 +36,32 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
     }
 
-    // 1. Save to Firebase (fast — do not block on failure)
-    try {
-      await addDoc(collection(db, "subscribers"), {
+    // Run all 3 tasks in PARALLEL — client already redirected, so server latency doesn't matter
+    await Promise.allSettled([
+      // 1. Save to Firebase
+      addDoc(collection(db, "subscribers"), {
         name,
         email,
         source: "free_ebook",
         createdAt: serverTimestamp(),
-      });
-    } catch (dbError) {
-      console.error("Firebase Error:", dbError);
-    }
+      }),
 
-    // 2. Send Welcome Email in background
-    transporter.sendMail({
-      from: `"Palm from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
-      to: email,
-      subject: "🎉 ยินดีต้อนรับ! นี่คือ E-Book ของคุณครับ",
-      html: WelcomeEmail({ name }),
-    }).catch((emailError) => {
-      console.error("Email send error (background):", emailError);
-    });
+      // 2. Send Welcome Email
+      transporter.sendMail({
+        from: `"Palm from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
+        to: email,
+        subject: "🎉 ยินดีต้อนรับ! นี่คือ E-Book ของคุณครับ",
+        html: WelcomeEmail({ name }),
+      }),
 
-    // 3. Notify Telegram in background
-    sendTelegramNotification(
-      `📚 <b>มีคนรับ E-Book ใหม่!</b>\n\n` +
-      `👤 <b>ชื่อ:</b> ${name}\n` +
-      `📧 <b>Email:</b> ${email}`
-    ).catch((err) => {
-      console.error("Telegram notify error:", err);
-    });
+      // 3. Notify Telegram
+      sendTelegramNotification(
+        `📚 <b>มีคนรับ E-Book ใหม่!</b>\n\n` +
+        `👤 <b>ชื่อ:</b> ${name}\n` +
+        `📧 <b>Email:</b> ${email}`
+      ),
+    ]);
 
-    // Return success immediately
     return NextResponse.json({ success: true, message: "Subscribed" });
   } catch (error) {
     console.error("Subscribe Error:", error);
