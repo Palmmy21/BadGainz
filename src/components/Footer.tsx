@@ -29,7 +29,7 @@ export default function Footer() {
               <FaGithub className="w-5 h-5" />
             </a>
             <a 
-              href="https://instagram.com/" 
+              href="https://www.instagram.com/palm.sakdidech/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-pink-500 hover:bg-white/10 hover:border-pink-500/30 transition-all"
@@ -37,7 +37,7 @@ export default function Footer() {
               <FaInstagram className="w-5 h-5" />
             </a>
             <a 
-              href="https://lin.ee/" 
+              href="https://line.me/ti/p/33-eCQHkas" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-green-500 hover:bg-white/10 hover:border-green-500/30 transition-all"
