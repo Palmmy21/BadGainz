@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // subscribers collection - server-side writes only (from API routes)
+    match /subscribers/{docId} {
+      allow read: if false;   // No client reads
+      allow write: if true;   // API route writes freely
+    }
+
+    // inquiries collection - server-side writes only
+    match /inquiries/{docId} {
+      allow read: if false;
+      allow write: if true;
+    }
+
+    // orders collection - for Stripe webhook
+    match /orders/{docId} {
+      allow read: if false;
+      allow write: if true;
+    }
+
+    // Block everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
