@@ -8,9 +8,35 @@ import FadeIn from "@/components/FadeIn";
 import LiveStripeDashboard from "@/components/LiveStripeDashboard";
 import { Gift, BookOpen, CheckCircle, XCircle, Plus, Package } from "lucide-react";
 import { useABTesting } from "@/hooks/useABTesting";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { variant, trackConversion } = useABTesting("hero_headline_v1");
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    
+    try {
+      // Just use the email prefix as name since we don't have a name field
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: email.split("@")[0], email }),
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+      router.push(`/free/download?email=${encodeURIComponent(email)}`);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-[var(--background)]">
@@ -154,7 +180,7 @@ export default function Home() {
               สำหรับผู้เริ่มต้นที่ยังไม่รู้จะจับต้นชนปลายอย่างไร เราแจกบทเรียนพื้นฐานและ E-Book ไกด์ไลน์การสร้างรายได้ออนไลน์ให้คุณไปศึกษาได้ฟรีๆ ทันที
             </p>
             
-            <form action="/free/download" className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
               <input 
                 type="email" 
                 name="email"
@@ -163,10 +189,11 @@ export default function Home() {
                 required
               />
               <button 
-                type="submit" 
-                className="bg-[var(--gold-primary)] text-black font-bold px-8 py-4 rounded-lg hover:bg-yellow-500 transition-colors whitespace-nowrap"
+                type="submit"
+                disabled={isLoading}
+                className="bg-[var(--gold-primary)] text-black font-bold px-8 py-4 rounded-lg hover:bg-yellow-500 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                ส่งข้อมูลให้ฉันเลย
+                {isLoading ? "กำลังดำเนินการ..." : "ส่งข้อมูลให้ฉันเลย"}
               </button>
             </form>
             <p className="text-xs text-neutral-500 mt-3">* ข้อมูลจะถูกส่งตรงไปยังอีเมลของคุณโดยอัตโนมัติ</p>
