@@ -30,6 +30,7 @@ async function sendTelegramNotification(message: string) {
 
 export async function POST(req: Request) {
   try {
+    const origin = req.headers.get("origin") || "";
     const { name, email } = await req.json();
 
     if (!name || !email) {
@@ -50,7 +51,7 @@ export async function POST(req: Request) {
         from: `"Palm จาก BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
         to: email,
         subject: "🎉 E-Book Pain to Cash ของคุณมาแล้วครับ!",
-        html: WelcomeEmail({ name }),
+        html: WelcomeEmail({ name, appUrl: origin }),
         headers: {
           "X-Mailer": "BADGAINZ Mailer",
           "List-Unsubscribe": `<mailto:${process.env.GMAIL_EMAIL}?subject=unsubscribe>`,

@@ -1,4 +1,5 @@
-export const WelcomeEmail = ({ name }: { name: string }) => {
+export const WelcomeEmail = ({ name, appUrl }: { name: string, appUrl?: string }) => {
+  const url = appUrl || process.env.NEXT_PUBLIC_APP_URL || 'https://badgainz.vercel.app';
   return `
     <!DOCTYPE html>
     <html lang="th">
@@ -30,7 +31,7 @@ export const WelcomeEmail = ({ name }: { name: string }) => {
         <p>ใน E-Book เล่มนี้ ผมได้สรุปแก่นสำคัญของการเปลี่ยน "ปัญหา" ให้กลายเป็น "รายได้" ซึ่งเป็นจุดเริ่มต้นที่สำคัญที่สุดของการทำธุรกิจออนไลน์ในยุคนี้ครับ</p>
         
         <center>
-          <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://badgainz.vercel.app'}/free/download" class="btn">
+          <a href="${url}/free/download" class="btn">
             👇 คลิกที่นี่เพื่อไปหน้าดาวน์โหลด E-Book 👇
           </a>
         </center>
