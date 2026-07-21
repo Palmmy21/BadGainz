@@ -83,7 +83,7 @@ export async function POST(req: Request) {
               <p>คุณสามารถดาวน์โหลด E-Book และรับโบนัสพิเศษของคุณได้ที่ลิงก์ด้านล่างนี้:</p>
               
               <div style="text-align: center; margin: 30px 0;">
-                <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://badgainz.vercel.app'}/First%20Step%20in%20Journey%20E%20Book.pdf" 
+                <a href="https://drive.google.com/file/d/1aed2wvX58l2EpdYa5inzWEMqZYlZyF1z/view?usp=sharing" 
                    style="background-color: #D4AF37; color: #000; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px;">
                   ดาวน์โหลด E-Book
                 </a>

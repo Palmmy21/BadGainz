@@ -53,8 +53,7 @@ export default function SuccessPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="/First Step in Journey E Book.pdf"
-              download="Class_A_First_Step_in_Journey.pdf"
+              href="https://drive.google.com/file/d/1aed2wvX58l2EpdYa5inzWEMqZYlZyF1z/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-[var(--gold-primary)] text-black font-black text-lg px-8 py-4 rounded-xl hover:bg-yellow-500 hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)]"
