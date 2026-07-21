@@ -88,9 +88,6 @@ export async function POST(req: Request) {
                   ดาวน์โหลด E-Book
                 </a>
               </div>
-              <p style="text-align: center; font-size: 14px; color: #666;">
-                หรือ <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://badgainz.vercel.app'}/checkout/success">คลิกที่นี่</a> เพื่อกลับไปยังหน้ารับสินค้า
-              </p>
               
               <p>หากมีข้อสงสัยเพิ่มเติม สามารถตอบกลับอีเมลฉบับนี้ได้เลยครับ</p>
               <p>ด้วยความเคารพ,<br>ทีมงาน Badgainz</p>
