@@ -52,7 +52,7 @@ export async function GET(req: Request) {
       if (diffHours >= 24 && !data.sentDay1) {
         try {
           await transporter.sendMail({
-            from: `"Zack from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
+            from: `"Palm from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
             to: email, 
             subject: "ทำไมคู่แข่งถึงขายของแพงกว่าคุณได้ 10 เท่า?",
             html: SequenceDay1({ name }),
@@ -73,9 +73,9 @@ export async function GET(req: Request) {
       else if (diffHours >= 48 && data.sentDay1 && !data.sentDay2) {
         try {
           await transporter.sendMail({
-            from: `"Zack from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
+            from: `"Palm from BADGAINZ" <${process.env.GMAIL_EMAIL}>`,
             to: email, 
-            subject: "🔴 สิทธิ์ใกล้เต็มแล้ว! โอกาสสุดท้ายของราคา 99 บาท",
+            subject: "Class A: ประสบการณ์ที่ผมอยากแชร์ให้คุณ",
             html: SequenceDay2({ name }),
           });
 

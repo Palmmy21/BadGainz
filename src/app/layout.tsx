@@ -26,13 +26,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Badgainz | Palm Sakdidech — สินค้าดิจิทัล รับทำเว็บ และเรื่องราวของผม",
-  description: "เรียนรู้การสร้าง digital products แบบมือโปร เริ่มต้นสร้างรายได้ออนไลน์ด้วยระบบ Automation จัดการทุกอย่างอัตโนมัติ สำหรับวัยรุ่นยุคใหม่",
+  title: "Badgainz | Palm Sakdidech — ธุรกิจ ผลงาน และประสบการณ์ที่อยากแชร์",
+  description: "Palm Sakdidech ผู้ทำ HorCare และ BotKit แชร์ประสบการณ์จากการทำธุรกิจจริง ไม่เชื่อเรื่องดวง เชื่อในสิ่งที่วัดค่าได้",
   icons: { icon: "/avatar-yellow.png", apple: "/avatar-yellow.png" },
   keywords: ["เริ่มต้นสร้างรายได้ออนไลน์", "สร้าง digital products", "หาเงินออนไลน์", "รายได้เสริม", "automation business"],
   openGraph: {
-    title: "Badgainz | เริ่มต้นสร้างรายได้ออนไลน์ ด้วย Digital Products",
-    description: "เรียนรู้การสร้าง digital products แบบมือโปร เริ่มต้นสร้างรายได้ออนไลน์ด้วยระบบ Automation",
+    title: "Badgainz | Palm Sakdidech",
+    description: "Palm Sakdidech ผู้ทำ HorCare และ BotKit แชร์ประสบการณ์จากการทำธุรกิจจริง",
     images: [{
       url: '/badgainz-meta.jpg',
       width: 1200,
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Badgainz | เริ่มต้นสร้างรายได้ออนไลน์ ด้วย Digital Products",
-    description: "เรียนรู้การสร้าง digital products แบบมือโปร เริ่มต้นสร้างรายได้ออนไลน์ด้วยระบบ Automation",
+    title: "Badgainz | Palm Sakdidech",
+    description: "Palm Sakdidech ผู้ทำ HorCare และ BotKit แชร์ประสบการณ์จากการทำธุรกิจจริง",
     images: ['/badgainz-meta.jpg'],
   },
   verification: {

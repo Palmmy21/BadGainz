@@ -26,7 +26,7 @@ export default function FreeEbookForm() {
       console.error(error);
     } finally {
       setIsLoading(false);
-      router.push(`/free/download?email=${encodeURIComponent(email)}`);
+      router.push("/free/download");
     }
   };
 

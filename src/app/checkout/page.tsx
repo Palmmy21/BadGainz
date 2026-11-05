@@ -6,6 +6,13 @@ import { useState } from "react";
 import Image from "next/image";
 import { Check } from "lucide-react";
 
+const INCLUDED = [
+  "E-book เล่าเส้นทางหาเงินก้อนแรกจาก Digital Product",
+  "Framework การหา Pain Point และเช็ค Demand",
+  "สูตรการปั้น Grand Slam Offer ให้คนยอมจ่ายแพง",
+  "สคริปต์ปิดการขาย (Bonus)",
+];
+
 export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
 
@@ -41,38 +48,30 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--background)] py-12 px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          
+    <div className="profile-page relative min-h-screen !bg-[var(--accent)] overflow-hidden flex items-center px-4 py-6 sm:py-8">
+      <div aria-hidden className="screentone hero-tone absolute inset-0" />
+
+      <div className="relative w-full max-w-5xl mx-auto">
+        <Link href="/" className="inline-flex items-center gap-2.5 mb-6 sm:mb-8" aria-label="BADGAINZ หน้าแรก">
+          <span className="relative w-10 h-10 rounded-full overflow-hidden border-[1.5px] border-[var(--ink)] bg-[var(--surface)]">
+            <Image src="/avatar-yellow.png" alt="" fill sizes="40px" className="object-cover" loading="eager" />
+          </span>
+          <span className="font-[family-name:var(--font-display)] font-bold text-lg tracking-[0.04em]">BADGAINZ</span>
+        </Link>
+
+        <main className="frame p-5 sm:p-8 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 md:gap-10">
           {/* Left Side: Product Details */}
-          <div className="flex flex-col">
-            <h1 className="text-3xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tight">
-              Class A: First Step <br/>
-              <span className="text-[var(--gold-primary)]">in Journey</span>
-            </h1>
-            
-            <div className="relative w-full max-w-sm aspect-[3/4] mb-8 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.15)] border border-white/10 mx-auto md:mx-0">
-              <Image 
-                src="/first-step-ebook.jpg" 
-                alt="Class A E-Book Cover" 
-                fill 
-                className="object-cover"
-                priority
-              />
+          <div className="grid grid-cols-[88px_minmax(0,1fr)] sm:grid-cols-[150px_minmax(0,1fr)] md:grid-cols-[110px_minmax(0,1fr)] lg:grid-cols-[170px_minmax(0,1fr)] gap-4 sm:gap-5 items-start">
+            <div className="relative w-full aspect-[1414/2000] sm:row-span-2 rounded-[12px] overflow-hidden border-[1.5px] border-[var(--ink)]">
+              <Image src="/first-step-ebook.jpg" alt="Class A E-Book Cover" fill sizes="170px" className="object-cover" loading="eager" />
             </div>
-            
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-white mb-2">สิ่งที่คุณจะได้รับ:</h3>
-              <ul className="space-y-3">
-                {[
-                  "E-book สอนหาเงินก้อนแรกจาก Digital Product",
-                  "Framework การหา Pain Point และเช็ค Demand",
-                  "สูตรการปั้น Grand Slam Offer ให้คนยอมจ่ายแพง",
-                  "สคริปต์ปิดการขาย (Bonus)",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-neutral-300">
-                    <Check className="w-5 h-5 text-[var(--gold-primary)] shrink-0 mt-0.5" />
+            <h1 className="display text-[clamp(1.5rem,3.4vw,2.25rem)] leading-tight self-center sm:self-start">Class A: First Step in Journey</h1>
+            <div className="col-span-2 sm:col-span-1 sm:col-start-2 sm:-mt-2">
+              <h2 className="font-[family-name:var(--font-display)] font-semibold mb-2">สิ่งที่คุณจะได้รับ:</h2>
+              <ul className="space-y-2.5">
+                {INCLUDED.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-[15px] leading-relaxed text-[var(--ink-soft)]">
+                    <Check className="w-4 h-4 text-[var(--ink)] shrink-0 mt-1" strokeWidth={2.5} aria-hidden />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -81,43 +80,35 @@ export default function CheckoutPage() {
           </div>
 
           {/* Right Side: Order Summary */}
-          <div className="flex justify-center md:justify-end">
-            <div className="max-w-md w-full bg-[#111111] p-8 rounded-2xl border border-white/10 shadow-2xl">
-              <h2 className="text-3xl font-black text-white mb-6 text-center">สรุปคำสั่งซื้อ</h2>
-              
-              <div className="bg-black/50 p-6 rounded-xl border border-white/5 mb-8">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-neutral-400">Class A: First Step in Journey</span>
-                  <span className="text-white font-medium">฿ 99.00</span>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-neutral-400">โบนัสทั้ง 3 รายการ</span>
-                  <span className="text-green-400 font-medium">ฟรี</span>
-                </div>
-                <div className="border-t border-white/10 my-4"></div>
-                <div className="flex justify-between items-center text-xl font-black text-[var(--gold-primary)]">
-                  <span>รวมทั้งหมด</span>
-                  <span>฿ 99.00</span>
-                </div>
-              </div>
+          <div className="rounded-[20px] bg-[var(--surface-sunk)] border border-[var(--line)] p-5 sm:p-6 self-start">
+            <h2 className="display text-2xl mb-5">สรุปคำสั่งซื้อ</h2>
 
-              <button 
-                onClick={handleCheckout} 
-                disabled={loading}
-                className="w-full bg-[var(--gold-primary)] text-black font-black text-lg py-4 rounded-xl hover:bg-yellow-500 transition-colors disabled:opacity-50 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
-              >
-                {loading ? 'กำลังดำเนินการ...' : 'ชำระเงินผ่าน Stripe / PromptPay'}
-              </button>
-              
-              <div className="mt-6 text-center">
-                <Link href="/" className="text-sm font-medium text-neutral-500 hover:text-white transition-colors">
-                  ← กลับไปหน้าแรก
-                </Link>
+            <dl className="text-[15px] space-y-3 mb-6">
+              <div className="flex justify-between gap-4">
+                <dt className="text-[var(--ink-soft)]">Class A: First Step in Journey</dt>
+                <dd className="font-medium tabular-nums whitespace-nowrap">฿ 259.00</dd>
               </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-[var(--ink-soft)]">โบนัสทั้ง 3 รายการ</dt>
+                <dd className="font-medium">ฟรี</dd>
+              </div>
+              <div className="flex justify-between items-end gap-4 pt-3 border-t border-[var(--line-strong)]">
+                <dt className="font-[family-name:var(--font-display)] font-semibold">รวมทั้งหมด</dt>
+                <dd className="display text-3xl tabular-nums leading-none whitespace-nowrap">฿ 259.00</dd>
+              </div>
+            </dl>
+
+            <button onClick={handleCheckout} disabled={loading} className="btn btn-primary w-full px-5 py-4 text-base sm:text-lg">
+              {loading ? 'กำลังดำเนินการ...' : 'ชำระเงินผ่าน Stripe / PromptPay'}
+            </button>
+
+            <div className="mt-4 text-center">
+              <Link href="/" className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors">
+                ← กลับไปหน้าแรก
+              </Link>
             </div>
           </div>
-
-        </div>
+        </main>
       </div>
     </div>
   );

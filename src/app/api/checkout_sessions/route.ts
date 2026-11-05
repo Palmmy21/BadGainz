@@ -18,10 +18,10 @@ export async function POST(req: NextRequest) {
             price_data: {
               currency: 'thb',
               product_data: {
-                name: 'Badgainz: The First 10K + All Bonuses',
-                description: 'Class A Course with 3 Crazy Bonuses',
+                name: 'Class A: First Step in Journey',
+                description: 'E-book พร้อมโบนัส 3 รายการ',
               },
-              unit_amount: 9900, // 99.00 THB
+              unit_amount: 25900, // 259.00 THB
             },
             quantity: 1,
           },

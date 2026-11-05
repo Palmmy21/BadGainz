@@ -1,158 +1,85 @@
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import FadeIn from "@/components/FadeIn";
-import { Star, TrendingUp, Quote } from "lucide-react";
+import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import Link from "next/link";
+import { Star } from "lucide-react";
 
 export const metadata = {
-  title: "ผลลัพธ์นักเรียน | Badgainz",
-  description: "ผลลัพธ์และความสำเร็จจากนักเรียนที่สร้างรายได้ผ่าน Digital Products",
+  title: "ผลลัพธ์ | Badgainz",
+  description: "ผลลัพธ์ที่ตรวจสอบได้ ระบบที่มีคนใช้จริงและเว็บที่เปิดดูได้",
 };
 
-const TESTIMONIALS = [
-  {
-    name: "คุณเอิร์ท",
-    role: "นักศึกษามหาวิทยาลัย",
-    result: "รายได้ก้อนแรก ฿ 15,000",
-    content: "เริ่มจากศูนย์ ไม่มีทุนเลย ใช้ความรู้จาก Class A ลองหา Pain Point และทำ E-book เล่มแรก ดีใจมากที่ตอนนั่งเรียนอยู่ก็มีแจ้งเตือนยอดโอนเข้าครับ",
-    tags: ["E-Book", "No Capital"]
-  },
-  {
-    name: "คุณนก",
-    role: "พนักงานประจำ",
-    result: "ประหยัดเวลาวันละ 3 ชม.",
-    content: "ทำเพจเป็นอาชีพเสริมแต่ไม่มีเวลาตอบแชทลูกค้า พอเซ็ตระบบ Automation ตามที่สอน ตอนนี้เลิกงานมาก็แพ็คของส่งอย่างเดียว ไม่ต้องมานั่งเฝ้าจอแล้วค่ะ",
-    tags: ["Automation", "Side Hustle"]
-  },
-  {
-    name: "คุณสมชาย",
-    role: "ขายสินค้าออนไลน์",
-    result: "ยอดโอนไวขึ้น 30%",
-    content: "เอาสคริปต์ปิดการขายไปปรับใช้กับแอดมินเพจ ลูกค้าถามน้อยลงและตัดสินใจโอนเร็วขึ้น ช่วยลดปัญหาลูกค้าทักมาแล้วเงียบหายได้ดีมากครับ",
-    tags: ["Business Owner", "Closer Script"]
-  },
-  {
-    name: "คุณแพรว",
-    role: "ฟรีแลนซ์",
-    result: "ขาย Template ได้ 50 ออเดอร์",
-    content: "ตอนแรกคิดว่างานที่เราทำมันธรรมดาไป แต่พอเอามาปรับเป็น Digital Product ตาม Blueprint ตอนนี้มีรายได้เข้ามาเรื่อยๆ กลายเป็นค่าขนมรายเดือนเลยค่ะ",
-    tags: ["Beginner Friendly", "Digital Product"]
-  }
-];
+function Stars() {
+  return (
+    <div className="flex gap-1 mb-3" aria-hidden>
+      {[1, 2, 3, 4, 5].map((i) => (
+        <Star key={i} className="w-5 h-5 text-[var(--ink)] fill-[var(--accent)]" />
+      ))}
+    </div>
+  );
+}
 
 export default function ProofPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] flex flex-col relative overflow-hidden">
+    <div className="profile-page min-h-screen flex flex-col">
       <Navbar />
-      
-      {/* Glow Effect */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--gold-primary)]/10 blur-[150px] rounded-full pointer-events-none" />
+      <PageHero
+        title={<>ผลลัพธ์ที่จับต้องได้ <br />ของจริง ไม่ขายฝัน</>}
+        subtitle="ผมเก็บไว้เฉพาะสิ่งที่ตรวจสอบได้ ระบบที่มีคนใช้จริง และเว็บที่เปิดดูได้เอง"
+      />
 
-      <main className="flex-1 max-w-6xl mx-auto w-full px-6 pt-40 pb-20 relative z-10">
-        <div className="text-center mb-20">
-          <FadeIn direction="up">
-            <h1 className="text-4xl sm:text-6xl font-black text-white mb-6 tracking-tight uppercase">
-              ผลลัพธ์ที่จับต้องได้ <br/>
-              <span className="text-[var(--gold-primary)]">ของจริง ไม่ขายฝัน</span>
-            </h1>
-            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
-              นี่คือเสียงตอบรับและผลลัพธ์จากลูกศิษย์และลูกค้าของ Badgainz ที่นำความรู้และระบบไปลงมือทำจริง จนสามารถสร้างรายได้แบบอัตโนมัติได้สำเร็จ
-            </p>
-          </FadeIn>
-        </div>
-
-        {/* Featured Result */}
-        <FadeIn direction="up" delay={0.2} className="mb-24">
-          <div className="bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-[var(--gold-primary)]/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(212,175,55,0.1)] relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
-             <div className="absolute top-0 left-0 w-2 h-full bg-[var(--gold-primary)]" />
-             <div className="w-full md:w-1/2 aspect-video bg-neutral-900 rounded-xl border border-white/10 flex items-center justify-center relative overflow-hidden group">
-                {/* Fallback text while image is loading or missing */}
-                <span className="text-neutral-600 font-mono text-sm absolute z-0">รออัปโหลดรูปหน้าเว็บ HorCare</span>
-                <Image 
-                  src="/horcare-preview.png" 
-                  alt="HorCare Dashboard" 
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 z-10"
-                />
-             </div>
-             <div className="w-full md:w-1/2">
-                <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 text-[var(--gold-primary)] fill-[var(--gold-primary)]" />)}
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-4">"จาก 0 ถึง 100 ธุรกิจในไม่ถึงปี"</h3>
-                <p className="text-neutral-400 mb-6 text-lg leading-relaxed italic">
-                  "HorCare เป็นสินค้าตัวแรกที่สามารถสร้างลูกค้าจริงได้ในไม่กี่สัปดาห์ จนมีหอพักจริงในระบบถึง 100 เจ้า ภายในระยะเวลาไม่ถึงปี นี่คือเครื่องพิสูจน์ว่าหากเราสร้างโปรดักต์ที่แก้ Pain Point ได้ถูกจุด ตลาดก็พร้อมที่จะจ่ายให้คุณ"
-                </p>
-                <div>
-                  <p className="text-white font-bold">Palm Sakdidech</p>
-                  <p className="text-[var(--gold-primary)] text-sm">Founder of Badgainz & HorCare</p>
-                </div>
-             </div>
-          </div>
-        </FadeIn>
-
-        {/* Featured Result 2: BlackAce */}
-        <FadeIn direction="up" delay={0.3} className="mb-24">
-          <div className="bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-red-600/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(239,68,68,0.1)] relative overflow-hidden flex flex-col md:flex-row-reverse gap-12 items-center">
-             <div className="absolute top-0 right-0 w-2 h-full bg-red-600" />
-             <div className="w-full md:w-1/2 aspect-video bg-neutral-900 rounded-xl border border-white/10 flex items-center justify-center relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0f0f0f] to-black flex items-center justify-center flex-col border-b-2 border-red-600 group-hover:scale-105 transition-transform duration-700 z-10">
-                   <h1 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-widest drop-shadow-md">BLACK<span className="text-red-600">ACE</span></h1>
-                   <p className="text-red-600 mt-2 text-xs sm:text-sm tracking-widest font-bold">ZACK PUTTIPONG</p>
-                </div>
-             </div>
-             <div className="w-full md:w-1/2">
-                <div className="flex gap-1 mb-4">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 text-red-500 fill-red-500" />)}
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-4">"เปลี่ยนสกิลที่มี ให้กลายเป็น Digital Product"</h3>
-                <p className="text-neutral-400 mb-6 text-lg leading-relaxed italic">
-                  "แซ็คคือลูกศิษย์ที่นำความรู้จากผมไปต่อยอดได้อย่างยอดเยี่ยม เขาเปลี่ยนทักษะและตัวตนให้กลายเป็น Digital Product ระดับพรีเมียม จนสร้างเว็บโปรไฟล์ (PageSpeed 99/100) ที่ดึงดูดลูกค้าและต่อยอดเป็นธุรกิจส่วนตัวที่สร้างรายได้จริง นี่คือผลลัพธ์ของคนที่ลงมือทำจริง"
-                </p>
-                <div>
-                  <p className="text-white font-bold">Zack Puttipong</p>
-                  <p className="text-red-500 text-sm">Founder of BlackAce / Content Creator</p>
-                </div>
-             </div>
-          </div>
-        </FadeIn>
-
-        {/* Grid Results */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {TESTIMONIALS.map((testimonial, idx) => (
-            <FadeIn key={idx} direction="up" delay={0.1 * idx}>
-              <div className="bg-[#111] border border-white/5 rounded-2xl p-8 hover:border-[var(--gold-primary)]/50 transition-colors h-full flex flex-col relative">
-                <Quote className="absolute top-6 right-6 w-10 h-10 text-white/5" />
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 bg-neutral-800 rounded-full flex items-center justify-center text-xl font-bold text-[var(--gold-primary)]">
-                    {testimonial.name.substring(0, 1)}
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-white">{testimonial.name}</h4>
-                    <p className="text-neutral-500 text-sm">{testimonial.role}</p>
-                  </div>
-                </div>
-                
-                <div className="mb-6 flex items-center gap-2 text-green-400 font-bold bg-green-500/10 w-fit px-3 py-1 rounded-full text-sm">
-                  <TrendingUp className="w-4 h-4" /> 
-                  {testimonial.result}
-                </div>
-                
-                <p className="text-neutral-300 leading-relaxed flex-1">
-                  "{testimonial.content}"
-                </p>
-                
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {testimonial.tags.map(tag => (
-                    <span key={tag} className="text-xs font-mono text-[var(--gold-primary)] border border-[var(--gold-primary)]/30 px-2 py-1 rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+      <main className="flex-1 w-full flex flex-col">
+        {/* Featured results on an ink spread, matching the homepage work section */}
+        <section aria-label="ผลงานเด่น" className="bg-[var(--ink)] text-[var(--on-ink)] py-14 sm:py-20">
+          <div className="wrap flex flex-col gap-14 sm:gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+              <div className="relative aspect-video rounded-[20px] overflow-hidden bg-[var(--surface-sunk)]">
+                <Image src="/covers/horcare.webp" alt="HorCare Dashboard" fill sizes="(min-width: 768px) 540px, 100vw" className="object-cover object-top" />
               </div>
-            </FadeIn>
-          ))}
-        </div>
+              <div>
+                <Stars />
+                <h2 className="display text-2xl sm:text-[2rem] leading-tight mb-3">&ldquo;จาก 0 ถึง 100 ธุรกิจในไม่ถึงปี&rdquo;</h2>
+                <p className="text-[var(--on-ink-soft)] mb-5 leading-relaxed">
+                  &ldquo;HorCare เป็นสินค้าตัวแรกที่สามารถสร้างลูกค้าจริงได้ในไม่กี่สัปดาห์ จนมีหอพักจริงในระบบถึง 100 เจ้า ภายในระยะเวลาไม่ถึงปี นี่คือเครื่องพิสูจน์ว่าหากเราสร้างโปรดักต์ที่แก้ Pain Point ได้ถูกจุด ตลาดก็พร้อมที่จะจ่ายให้คุณ&rdquo;
+                </p>
+                <p className="font-semibold">Palm Sakdidech</p>
+                <p className="text-[var(--accent)] text-sm">Founder of Badgainz &amp; HorCare</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+              <div className="md:order-2 relative aspect-video rounded-[20px] overflow-hidden bg-[var(--surface-sunk)]">
+                <Image src="/covers/blackace.webp" alt="หน้าเว็บ BlackAce ของ Zack Puttipong" fill sizes="(min-width: 768px) 540px, 100vw" className="object-cover object-top" />
+              </div>
+              <div className="md:order-1">
+                <Stars />
+                <h2 className="display text-2xl sm:text-[2rem] leading-tight mb-3">&ldquo;เปลี่ยนสกิลที่มี ให้กลายเป็น Digital Product&rdquo;</h2>
+                <p className="text-[var(--on-ink-soft)] mb-5 leading-relaxed">
+                  &ldquo;แซ็คเอาสิ่งที่ตัวเองมีมาต่อยอดได้ดีมาก เขาเปลี่ยนทักษะและตัวตนให้กลายเป็น Digital Product ระดับพรีเมียม จนสร้างเว็บโปรไฟล์ (PageSpeed 99/100) ที่ดึงดูดลูกค้าและต่อยอดเป็นธุรกิจส่วนตัวที่สร้างรายได้จริง นี่คือผลลัพธ์ของคนที่ลงมือทำจริง&rdquo;
+                </p>
+                <p className="font-semibold">Palm Sakdidech</p>
+                <p className="text-[var(--accent)] text-sm">พูดถึง Zack Puttipong, Founder of BlackAce</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="wrap py-12 sm:py-16 text-center">
+          <h2 className="display text-[clamp(1.5rem,3vw,2rem)] leading-tight">อยากดูตัวจริง</h2>
+          <p className="mt-2 text-[var(--ink-soft)]">ทั้งธุรกิจและผลงานเปิดดูได้เลย</p>
+          <div className="mt-5 flex flex-col sm:flex-row justify-center gap-2.5">
+            <Link href="/business" className="btn btn-dark px-7 py-3">
+              ดูธุรกิจของผม
+            </Link>
+            <Link href="/services" className="btn btn-outline px-7 py-3">
+              ดูบริการรับทำเว็บ
+            </Link>
+          </div>
+        </section>
       </main>
+
+      <Footer />
     </div>
   );
 }

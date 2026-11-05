@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FadeIn from "@/components/FadeIn";
+import PageHero from "@/components/PageHero";
 import {
-  CheckCircle, ArrowRight, Send, ChevronDown,
-  Palette, ShoppingCart, Cpu, Users, Building2, Star,
+  CheckCircle, ArrowRight, Send, Plus,
+  Palette, ShoppingCart, Cpu, Users, Building2,
   Clock, MessageCircle, Zap, Shield, TrendingUp, Gauge
 } from "lucide-react";
 
@@ -20,46 +19,44 @@ const portfolioItems = [
     title: "HorCare (ระบบบริหารหอพัก)",
     category: "saas",
     tags: ["SaaS", "Fullstack", "Web App"],
-    tagColors: ["blue", "green", "purple"],
     desc: "Web Application บริหารหอพักครบวงจร มีหอพักใช้งานจริงมากกว่า 100 แห่ง ช่วยเจ้าของหอพักลดเวลาเก็บค่าเช่าได้กว่า 80%",
     resultIcon: <TrendingUp className="w-3.5 h-3.5" />,
     result: "100+ หอพัก ใช้งานจริง",
     link: "https://horcare-landing.vercel.app/",
-    bg: "from-blue-900/40 to-black",
-    previewText: "HorCare",
-    previewSub: "PROPERTY MANAGEMENT",
-    previewColor: "#3b82f6",
-    image: "/horcare-preview.png",
+    image: "/covers/horcare.webp",
+  },
+  {
+    id: 4,
+    title: "BotKit OA (LINE OA Chatbot)",
+    category: "sme",
+    tags: ["LINE OA", "Chatbot", "ธุรกิจของผม"],
+    desc: "บอทที่ตอบราคา รับจองคิว รับออเดอร์ และเตือนลูกค้าให้เอง สำหรับร้านเสริมสวย ร้านอาหาร คลินิก และร้านค้าออนไลน์",
+    resultIcon: <Zap className="w-3.5 h-3.5" />,
+    result: "เริ่มต้น ฿1,990",
+    link: "https://botkit-oa.vercel.app/",
+    image: "/covers/botkit.webp",
   },
   {
     id: 2,
     title: "BlackAce (Personal Branding)",
     category: "creator",
     tags: ["Personal Branding", "Landing Page"],
-    tagColors: ["red", "gold"],
     desc: "หน้าเว็บโปรไฟล์สำหรับ Content Creator ทำคะแนนความเร็ว PageSpeed ได้ 99/100 ช่วยยกระดับความน่าเชื่อถือให้ Personal Brand แบบพรีเมียม",
     resultIcon: <Gauge className="w-3.5 h-3.5" />,
     result: "PageSpeed 99/100",
     link: "https://blackace-five.vercel.app/",
-    bg: "from-neutral-900 to-black",
-    previewText: "BLACK ACE",
-    previewSub: "ZACK PUTTIPONG",
-    previewColor: "#ef4444",
+    image: "/covers/blackace.webp",
   },
   {
     id: 3,
     title: "Badgainz Platform",
     category: "sme",
     tags: ["Landing Page", "E-Commerce", "Digital Product"],
-    tagColors: ["gold", "purple", "blue"],
     desc: "หน้าเว็บขาย Digital Product ที่ออกแบบตามหลักจิตวิทยา สร้างยอดขายอัตโนมัติ (Passive Income) ได้ตลอด 24 ชม. โดยไม่ต้องใช้แอดมิน",
     resultIcon: <Zap className="w-3.5 h-3.5" />,
     result: "Passive Income อัตโนมัติ",
     link: "/",
-    bg: "from-yellow-900/30 to-black",
-    previewText: "BADGAINZ",
-    previewSub: "DIGITAL PLATFORM",
-    previewColor: "#d4af37",
+    image: "/covers/badgainz.webp",
   },
 ];
 
@@ -70,9 +67,6 @@ const pricingTiers = [
     price: "1,990 – 3,990",
     duration: "3–7 วัน",
     icon: <Palette className="w-6 h-6" />,
-    color: "from-blue-500/20 to-blue-900/10",
-    border: "border-blue-500/30",
-    textColor: "text-blue-400",
     features: [
       "ออกแบบ 1–3 หน้า",
       "Responsive ทุกขนาดจอ",
@@ -88,9 +82,6 @@ const pricingTiers = [
     price: "4,990 – 9,990",
     duration: "2–4 สัปดาห์",
     icon: <ShoppingCart className="w-6 h-6" />,
-    color: "from-[var(--gold-primary)]/20 to-yellow-900/10",
-    border: "border-[var(--gold-primary)]/50",
-    textColor: "text-[var(--gold-primary)]",
     featured: true,
     features: [
       "ออกแบบ Custom หลายหน้า",
@@ -107,9 +98,6 @@ const pricingTiers = [
     price: "9,990 – 29,990",
     duration: "1–3 เดือน",
     icon: <Cpu className="w-6 h-6" />,
-    color: "from-purple-500/20 to-purple-900/10",
-    border: "border-purple-500/30",
-    textColor: "text-purple-400",
     features: [
       "ระบบ Login / Auth",
       "Database + API",
@@ -169,21 +157,10 @@ const faqs = [
   },
 ];
 
-// ─── TAG COLOR MAP ────────────────────────────────────────────────────────────
-
-const tagColorMap: Record<string, string> = {
-  blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-  green: "bg-green-500/10 text-green-400 border-green-500/20",
-  purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-  red: "bg-red-500/10 text-red-400 border-red-500/20",
-  gold: "bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] border-[var(--gold-primary)]/20",
-};
-
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
   const [activeFilter, setActiveFilter] = useState<"all" | "creator" | "sme" | "saas">("all");
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: "", contact: "", projectType: "landing_page", budget: "", details: "",
   });
@@ -213,98 +190,72 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden bg-[var(--background)]">
+    <div className="profile-page min-h-screen flex flex-col">
       <Navbar />
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section className="relative pt-44 pb-24 px-6 sm:px-20 z-10 flex flex-col items-center text-center">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[var(--gold-primary)]/8 blur-[130px] rounded-full pointer-events-none" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-
-        <FadeIn direction="up" className="relative z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] font-bold text-sm rounded-full mb-8 border border-[var(--gold-primary)]/30">
-            <Star className="w-4 h-4 fill-current" />
-            Web Development by BADGAINZ
-          </div>
-          <h1 className="text-5xl sm:text-7xl font-black text-white mb-6 leading-tight">
-            เปลี่ยนไอเดียของคุณ<br />
-            ให้เป็น{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--gold-primary)] to-yellow-200">
-              ระบบที่ทำเงิน
-            </span>
-          </h1>
-          <p className="text-neutral-400 text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+      <PageHero
+        title={<>เปลี่ยนไอเดียของคุณ<br />ให้เป็นระบบที่ทำเงิน</>}
+        subtitle={
+          <>
             รับออกแบบและพัฒนาเว็บไซต์ Landing Page, E-Commerce และ Web Application
             สำหรับ Creator, SME และ Startup ที่อยากได้ระบบที่{" "}
-            <strong className="text-white">ดูดี ใช้งานง่าย และสร้างผลลัพธ์จริง</strong>
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
-              className="group relative inline-flex items-center justify-center gap-2 px-10 py-5 font-bold text-black bg-gradient-to-r from-[var(--gold-primary)] to-yellow-500 rounded-xl overflow-hidden transition-transform hover:scale-105 active:scale-95 text-lg shadow-[0_0_30px_rgba(212,175,55,0.3)]"
-            >
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative">ปรึกษาฟรี ไม่มีข้อผูกมัด</span>
-              <ArrowRight className="w-5 h-5 relative" />
-            </a>
-            <a
-              href="#pricing"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 font-bold text-white border border-white/10 hover:border-[var(--gold-primary)]/50 rounded-xl transition-all hover:bg-white/5 text-lg"
-            >
-              ดูแนวทางราคา
-            </a>
-          </div>
-        </FadeIn>
+            <strong className="font-semibold">ดูดี ใช้งานง่าย และสร้างผลลัพธ์จริง</strong>
+          </>
+        }
+      >
+        <div className="mt-7 grid grid-cols-1 sm:flex sm:justify-center gap-2.5">
+          <a href="#contact" className="btn btn-dark px-7 py-3.5 text-base">
+            ปรึกษาฟรี ไม่มีข้อผูกมัด <ArrowRight className="w-4 h-4" aria-hidden />
+          </a>
+          <a href="#pricing" className="btn btn-outline px-7 py-3.5 text-base">
+            ดูแนวทางราคา
+          </a>
+        </div>
 
         {/* Stats */}
-        <FadeIn direction="up" delay={0.3} className="relative z-10 mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl w-full">
+        <dl className="mt-9 grid grid-cols-2 sm:grid-cols-4 bg-[var(--surface)] border-[1.5px] border-[var(--ink)] rounded-[20px] overflow-hidden">
           {[
-            { value: "100+", label: "ผู้ใช้งานจริง (HorCare)" },
+            { value: "100+", label: "หอพักใช้งานจริง (HorCare)" },
             { value: "99/100", label: "PageSpeed Score" },
             { value: "3+", label: "ระบบที่ Deploy แล้ว" },
             { value: "0 แอดมิน", label: "ระบบทำงานอัตโนมัติ" },
-          ].map((s, i) => (
-            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-[var(--gold-primary)]/30 transition-colors">
-              <div className="text-2xl font-black text-[var(--gold-primary)] mb-1">{s.value}</div>
-              <div className="text-xs text-neutral-400 leading-snug">{s.label}</div>
+          ].map((s) => (
+            <div key={s.label} className="px-3 py-3">
+              <dd className="display text-xl leading-tight">{s.value}</dd>
+              <dt className="text-[13px] text-[var(--ink-soft)] leading-snug mt-0.5">{s.label}</dt>
             </div>
           ))}
-        </FadeIn>
-      </section>
+        </dl>
+      </PageHero>
 
-      {/* ── WHO IS THIS FOR ────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 sm:px-20 relative z-10 bg-black/30 border-y border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn direction="up" className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">เหมาะสำหรับใคร?</h2>
-            <p className="text-neutral-400">เราเชี่ยวชาญงาน 3 กลุ่มลูกค้าหลักนี้</p>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {clientCategories.map((cat, i) => (
-              <FadeIn key={cat.id} direction="up" delay={i * 0.1} className="h-full">
-                <div className="h-full bg-[#111] border border-white/10 rounded-2xl p-7 hover:border-[var(--gold-primary)]/30 transition-all group flex flex-col">
-                  <div className="w-12 h-12 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[var(--gold-primary)] group-hover:text-black transition-all shrink-0">
+      <main className="flex-1 w-full flex flex-col">
+        {/* ── WHO IS THIS FOR ──────────────────────────────────────────────── */}
+        <section className="wrap pt-14 sm:pt-20">
+          <h2 className="display text-[clamp(1.75rem,3.4vw,2.5rem)] leading-tight">เหมาะสำหรับใคร?</h2>
+          <p className="text-[var(--ink-soft)] mt-1.5 mb-6">เราเชี่ยวชาญงาน 3 กลุ่มลูกค้าหลักนี้</p>
+          <ul className="card grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--line)]">
+            {clientCategories.map((cat) => (
+              <li key={cat.id} className="p-5 sm:p-6">
+                <h3 className="display text-lg flex items-center gap-2.5 mb-1.5">
+                  <span aria-hidden className="w-9 h-9 grid place-items-center rounded-full bg-[var(--accent)] border-[1.5px] border-[var(--ink)] shrink-0">
                     {cat.icon}
-                  </div>
-                  <h3 className="text-white font-bold text-lg mb-2">{cat.label}</h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed flex-1">{cat.desc}</p>
-                </div>
-              </FadeIn>
+                  </span>
+                  {cat.label}
+                </h3>
+                <p className="text-[var(--ink-soft)] text-[15px] leading-relaxed">{cat.desc}</p>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
+          </ul>
+        </section>
 
-      {/* ── PORTFOLIO ──────────────────────────────────────────────────────── */}
-      <section className="py-24 px-6 sm:px-20 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <FadeIn direction="up" className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">ผลงานที่ผ่านมา</h2>
-            <p className="text-neutral-400">ระบบจริง ใช้งานจริง มีผลลัพธ์จริง</p>
-          </FadeIn>
+        {/* ── PORTFOLIO ────────────────────────────────────────────────────── */}
+        <section className="wrap py-14 sm:py-20">
+          <h2 className="display text-[clamp(1.75rem,3.4vw,2.5rem)] leading-tight">ผลงานที่ผ่านมา</h2>
+          <p className="text-[var(--ink-soft)] mt-1.5 mb-5">ระบบจริง ใช้งานจริง มีผลลัพธ์จริง</p>
 
           {/* Filter tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap gap-2 mb-6">
             {[
               { id: "all", label: "ทั้งหมด" },
               { id: "creator", label: "Creator / Personal Brand" },
@@ -314,10 +265,11 @@ export default function ServicesPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id as typeof activeFilter)}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition-all border ${
+                aria-pressed={activeFilter === tab.id}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors border-[1.5px] ${
                   activeFilter === tab.id
-                    ? "bg-[var(--gold-primary)] text-black border-[var(--gold-primary)] shadow-[0_0_15px_rgba(212,175,55,0.3)]"
-                    : "bg-transparent text-neutral-400 border-white/10 hover:border-white/30 hover:text-white"
+                    ? "bg-[var(--ink)] text-[var(--surface)] border-[var(--ink)]"
+                    : "bg-[var(--surface)] text-[var(--ink-soft)] border-[var(--line-strong)] hover:border-[var(--ink)] hover:text-[var(--ink)]"
                 }`}
               >
                 {tab.label}
@@ -325,239 +277,184 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPortfolio.map((project, i) => (
-              <FadeIn key={project.id} direction="up" delay={i * 0.1}
-                className="bg-[#111] border border-white/10 rounded-3xl overflow-hidden group hover:border-[var(--gold-primary)]/40 transition-all flex flex-col hover:-translate-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {filteredPortfolio.map((project) => (
+              <article key={project.id} className="card card-link overflow-hidden flex flex-col">
                 {/* Preview */}
-                <div className="aspect-video relative bg-neutral-900 overflow-hidden">
-                  {project.image ? (
-                    <Image src={project.image} alt={project.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                  ) : (
-                    <div className={`absolute inset-0 bg-gradient-to-br ${project.bg} flex flex-col items-center justify-center group-hover:scale-105 transition-transform duration-700`}>
-                      <h3 className="text-3xl font-black tracking-widest drop-shadow-md" style={{ color: project.previewColor }}>
-                        {project.previewText}
-                      </h3>
-                      <p className="text-xs tracking-widest mt-2 text-neutral-500">{project.previewSub}</p>
-                    </div>
-                  )}
-                  {/* Result badge */}
-                  <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm border border-white/10 px-3 py-1.5 rounded-full">
-                    <span className="flex items-center gap-1.5 text-xs font-bold text-[var(--gold-primary)]">
-                      {project.resultIcon}
-                      {project.result}
-                    </span>
-                  </div>
+                <div className="aspect-video relative bg-[var(--surface-sunk)] border-b border-[var(--line)]">
+                  <Image src={project.image} alt={project.title} fill sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
                 </div>
 
-                <div className="p-7 flex-1 flex flex-col">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, j) => (
-                      <span key={j} className={`px-2.5 py-0.5 text-xs font-bold rounded-full border ${tagColorMap[project.tagColors[j]] || tagColorMap.gold}`}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-[var(--gold-primary)] transition-colors">{project.title}</h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed flex-1 mb-6">{project.desc}</p>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[var(--gold-primary)] font-bold text-sm hover:gap-3 transition-all mt-auto">
-                    ดูผลงานจริง <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROCESS ────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 sm:px-20 relative z-10 bg-black/40 border-y border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn direction="up" className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">ขั้นตอนการทำงาน</h2>
-            <p className="text-neutral-400">ตรงไปตรงมา โปร่งใส ไม่ซับซ้อน</p>
-          </FadeIn>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { step: "01", icon: <MessageCircle className="w-6 h-6" />, title: "ปรึกษาฟรี", desc: "คุยเพื่อเข้าใจ requirement และแนะแนวทางที่เหมาะสม" },
-              { step: "02", icon: <Zap className="w-6 h-6" />, title: "วาง Scope + ราคา", desc: "ประเมินราคาและเวลาที่แน่นอน ก่อนเริ่มงาน" },
-              { step: "03", icon: <Cpu className="w-6 h-6" />, title: "พัฒนา + Update", desc: "ส่ง progress ทุกสัปดาห์ ให้ Approve ทีละขั้น" },
-              { step: "04", icon: <Shield className="w-6 h-6" />, title: "ส่งงาน + Support", desc: "ส่งมอบพร้อม support หลังงานตามที่ตกลง" },
-            ].map((step, i) => (
-              <FadeIn key={i} direction="up" delay={i * 0.1}>
-                <div className="relative bg-[#111] border border-white/10 rounded-2xl p-6 hover:border-[var(--gold-primary)]/30 transition-all text-center group">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold-primary)] text-black text-xs font-black px-3 py-0.5 rounded-full">
-                    {step.step}
-                  </div>
-                  <div className="w-12 h-12 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] rounded-xl flex items-center justify-center mx-auto mb-4 mt-3 group-hover:bg-[var(--gold-primary)] group-hover:text-black transition-all">
-                    {step.icon}
-                  </div>
-                  <h3 className="text-white font-bold mb-2">{step.title}</h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed">{step.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRICING GUIDE ──────────────────────────────────────────────────── */}
-      <section id="pricing" className="py-24 px-6 sm:px-20 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <FadeIn direction="up" className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 text-neutral-300 text-sm rounded-full mb-6 border border-white/10">
-              <Clock className="w-4 h-4" /> แนวทางราคา — ราคาจริงขึ้นอยู่กับ scope งาน
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">แนวทางราคา (Pricing Guide)</h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
-              ราคาโปร่งใสตั้งแต่ต้น เพื่อให้คุณวางแผนงบได้ทันที — ไม่มีค่าใช้จ่ายซ่อนเร้น
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {pricingTiers.map((tier, i) => (
-              <FadeIn key={i} direction="up" delay={i * 0.1}>
-                <div className={`relative bg-gradient-to-b ${tier.color} border ${tier.border} rounded-3xl p-8 flex flex-col h-full transition-all hover:-translate-y-1 ${tier.featured ? "shadow-[0_0_40px_rgba(212,175,55,0.15)]" : ""}`}>
-                  {tier.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--gold-primary)] text-black text-xs font-black px-4 py-1 rounded-full whitespace-nowrap flex items-center gap-1">
-                      <Zap className="w-3 h-3" /> ที่นิยมสุด
-                    </div>
-                  )}
-                  <div className={`w-12 h-12 ${tier.featured ? "bg-[var(--gold-primary)] text-black" : "bg-white/10 text-white"} rounded-xl flex items-center justify-center mb-5`}>
-                    {tier.icon}
-                  </div>
-                  <div className={`text-xs font-bold uppercase tracking-widest ${tier.textColor} mb-1`}>{tier.name}</div>
-                  <h3 className="text-white font-bold text-lg mb-4">{tier.label}</h3>
-
-                  <div className="mb-1">
-                    <span className="text-3xl font-black text-white">฿{tier.price}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-neutral-400 mb-6">
-                    <Clock className="w-3.5 h-3.5" /> {tier.duration}
-                  </div>
-
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {tier.features.map((f, j) => (
-                      <li key={j} className="flex items-start gap-2.5 text-sm text-neutral-300">
-                        <CheckCircle className={`w-4 h-4 ${tier.textColor} shrink-0 mt-0.5`} />
-                        {f}
-                      </li>
+                <div className="p-5 sm:p-6 flex-1 flex flex-col">
+                  <p className="chip chip-accent self-start mb-3">
+                    {project.resultIcon}
+                    {project.result}
+                  </p>
+                  <h3 className="display text-lg leading-snug">{project.title}</h3>
+                  <p className="text-[var(--ink-soft)] text-[15px] leading-relaxed mt-1.5 mb-4 flex-1">{project.desc}</p>
+                  <ul className="flex flex-wrap gap-1.5 mb-4">
+                    {project.tags.map((tag) => (
+                      <li key={tag} className="chip">{tag}</li>
                     ))}
                   </ul>
-
-                  <div className="bg-white/5 rounded-xl p-3 mb-6 border border-white/5">
-                    <div className="flex items-center gap-2 text-xs text-neutral-400">
-                      <Users className="w-3.5 h-3.5" />
-                      <span>เหมาะสำหรับ: {tier.forWho}</span>
-                    </div>
-                  </div>
-
-                  <a href="#contact"
-                    className={`w-full py-3 rounded-xl font-bold text-center text-sm transition-all ${
-                      tier.featured
-                        ? "bg-[var(--gold-primary)] text-black hover:bg-yellow-400"
-                        : "border border-white/20 text-white hover:bg-white/10"
-                    }`}>
-                    ปรึกษาราคาจริง →
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-[family-name:var(--font-display)] font-semibold text-sm underline underline-offset-4 decoration-[var(--accent)] decoration-2">
+                    ดูผลงานจริง <ArrowRight className="w-4 h-4" aria-hidden />
                   </a>
                 </div>
-              </FadeIn>
+              </article>
             ))}
           </div>
+        </section>
 
-          <FadeIn direction="up" delay={0.3}>
-            <p className="text-center text-sm text-neutral-500 mt-8">
-              * ราคาด้านบนเป็นประมาณการเริ่มต้น ราคาจริงจะประเมินหลังจากคุยรายละเอียด scope งาน
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+        {/* ── PROCESS: a real sequence, so the numbers stay ────────────────── */}
+        <section className="relative bg-[var(--ink)] text-[var(--on-ink)] py-14 sm:py-20 overflow-hidden">
+          <div aria-hidden className="screentone absolute inset-x-0 top-0 h-48 [--tone:#ffffff] [--tone-opacity:0.1] [mask-image:linear-gradient(to_bottom,#000,transparent)]" />
+          <div className="wrap relative">
+            <h2 className="display text-[clamp(1.75rem,3.4vw,2.5rem)] leading-tight">ขั้นตอนการทำงาน</h2>
+            <p className="text-[var(--on-ink-soft)] mt-1.5 mb-8">ตรงไปตรงมา โปร่งใส ไม่ซับซ้อน</p>
+            <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-7">
+              {[
+                { step: "01", icon: <MessageCircle className="w-5 h-5" aria-hidden />, title: "ปรึกษาฟรี", desc: "คุยเพื่อเข้าใจ requirement และแนะแนวทางที่เหมาะสม" },
+                { step: "02", icon: <Zap className="w-5 h-5" aria-hidden />, title: "วาง Scope + ราคา", desc: "ประเมินราคาและเวลาที่แน่นอน ก่อนเริ่มงาน" },
+                { step: "03", icon: <Cpu className="w-5 h-5" aria-hidden />, title: "พัฒนา + Update", desc: "ส่ง progress ทุกสัปดาห์ ให้ Approve ทีละขั้น" },
+                { step: "04", icon: <Shield className="w-5 h-5" aria-hidden />, title: "ส่งงาน + Support", desc: "ส่งมอบพร้อม support หลังงานตามที่ตกลง" },
+              ].map((step) => (
+                <li key={step.step} className="border-t border-[var(--on-ink-line)] pt-4">
+                  <p className="flex items-center justify-between text-[var(--accent)]">
+                    <span className="font-[family-name:var(--font-hand)] text-3xl leading-none">{step.step}</span>
+                    {step.icon}
+                  </p>
+                  <h3 className="display text-lg mt-3 mb-1">{step.title}</h3>
+                  <p className="text-[var(--on-ink-soft)] text-[15px] leading-relaxed">{step.desc}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
 
-      {/* ── FAQ ────────────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 sm:px-20 relative z-10 bg-black/40 border-y border-white/5">
-        <div className="max-w-3xl mx-auto">
-          <FadeIn direction="up" className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">คำถามที่พบบ่อย</h2>
-            <p className="text-neutral-400">ตอบก่อนเลย เพื่อประหยัดเวลาของคุณ</p>
-          </FadeIn>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <FadeIn key={i} direction="up" delay={i * 0.05}>
-                <div
-                  className={`bg-[#111] border rounded-2xl overflow-hidden transition-all cursor-pointer ${
-                    openFaq === i ? "border-[var(--gold-primary)]/40" : "border-white/10 hover:border-white/20"
-                  }`}
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                >
-                  <div className="flex justify-between items-center px-6 py-5">
-                    <h3 className={`font-bold text-base pr-4 ${openFaq === i ? "text-[var(--gold-primary)]" : "text-white"}`}>
-                      {faq.q}
-                    </h3>
-                    <ChevronDown className={`w-5 h-5 shrink-0 text-neutral-400 transition-transform duration-300 ${openFaq === i ? "rotate-180 text-[var(--gold-primary)]" : ""}`} />
-                  </div>
-                  {openFaq === i && (
-                    <div className="px-6 pb-5">
-                      <p className="text-neutral-400 text-sm leading-relaxed">{faq.a}</p>
-                    </div>
+        {/* ── PRICING GUIDE ────────────────────────────────────────────────── */}
+        <section id="pricing" className="wrap scroll-mt-20 py-14 sm:py-20">
+          <p className="chip mb-4">
+            <Clock className="w-3.5 h-3.5" aria-hidden /> แนวทางราคา — ราคาจริงขึ้นอยู่กับ scope งาน
+          </p>
+          <h2 className="display text-[clamp(1.75rem,3.4vw,2.5rem)] leading-tight">แนวทางราคา (Pricing Guide)</h2>
+          <p className="text-[var(--ink-soft)] mt-1.5 max-w-xl">
+            ราคาโปร่งใสตั้งแต่ต้น เพื่อให้คุณวางแผนงบได้ทันที — ไม่มีค่าใช้จ่ายซ่อนเร้น
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mt-7 md:items-stretch">
+            {pricingTiers.map((tier) => (
+              <article
+                key={tier.name}
+                className={`card p-6 flex flex-col ${tier.featured ? "!bg-[var(--accent-soft)] !border-[var(--ink)] border-[1.5px]" : ""}`}
+              >
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span aria-hidden className="w-11 h-11 grid place-items-center rounded-full bg-[var(--accent)] border-[1.5px] border-[var(--ink)]">
+                    {tier.icon}
+                  </span>
+                  {tier.featured && (
+                    <span className="chip chip-accent">
+                      <Zap className="w-3 h-3" aria-hidden /> แนะนำ
+                    </span>
                   )}
                 </div>
-              </FadeIn>
+                <p className="display text-xl">{tier.name}</p>
+                <h3 className="text-[15px] text-[var(--ink-soft)] mb-3">{tier.label}</h3>
+
+                <p className="display text-[1.75rem] tabular-nums leading-tight">฿{tier.price}</p>
+                <p className="flex items-center gap-1.5 text-sm text-[var(--ink-soft)] mt-1 mb-5">
+                  <Clock className="w-3.5 h-3.5" aria-hidden /> {tier.duration}
+                </p>
+
+                <ul className="space-y-2 mb-5 flex-1">
+                  {tier.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-[15px]">
+                      <CheckCircle className="w-4 h-4 shrink-0 mt-1" aria-hidden />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="flex items-start gap-2 text-sm text-[var(--ink-soft)] mb-5">
+                  <Users className="w-3.5 h-3.5 shrink-0 mt-1" aria-hidden />
+                  <span>เหมาะสำหรับ: {tier.forWho}</span>
+                </p>
+
+                <a href="#contact" className={`btn w-full px-5 py-3 ${tier.featured ? "btn-dark" : "btn-outline"}`}>
+                  ปรึกษาราคาจริง →
+                </a>
+              </article>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ── CONTACT FORM ───────────────────────────────────────────────────── */}
-      <section id="contact" className="py-24 px-6 sm:px-20 relative z-10">
-        <div className="max-w-3xl mx-auto">
-          <FadeIn direction="up">
-            <div className="bg-gradient-to-b from-[#111] to-[#0a0a0a] border border-[var(--gold-primary)]/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(212,175,55,0.1)]">
-              <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] text-sm font-bold rounded-full mb-5 border border-[var(--gold-primary)]/30">
-                  ปรึกษาฟรี — ไม่มีข้อผูกมัด
-                </div>
-                <h2 className="text-3xl font-black text-white mb-3">สนใจให้เราดูแลให้?</h2>
-                <p className="text-neutral-400">กรอกข้อมูลเบื้องต้น เราจะติดต่อกลับภายใน 24 ชม.</p>
+          <p className="text-sm text-[var(--ink-faint)] mt-5">
+            * ราคาด้านบนเป็นประมาณการเริ่มต้น ราคาจริงจะประเมินหลังจากคุยรายละเอียด scope งาน
+          </p>
+        </section>
+
+        {/* ── FAQ ──────────────────────────────────────────────────────────── */}
+        <section className="wrap pb-14 sm:pb-20">
+          <h2 className="display text-[clamp(1.75rem,3.4vw,2.5rem)] leading-tight">คำถามที่พบบ่อย</h2>
+          <p className="text-[var(--ink-soft)] mt-1.5 mb-6">ตอบก่อนเลย เพื่อประหยัดเวลาของคุณ</p>
+          <div className="card divide-y divide-[var(--line)]">
+            {faqs.map((faq) => (
+              <details key={faq.q} className="group">
+                <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-4 px-5 py-4 font-[family-name:var(--font-display)] font-semibold text-base sm:text-[17px]">
+                  {faq.q}
+                  <Plus className="w-5 h-5 shrink-0 text-[var(--ink-soft)] transition-transform duration-300 group-open:rotate-45" aria-hidden />
+                </summary>
+                <p className="px-5 pb-5 -mt-1 text-[15px] text-[var(--ink-soft)] leading-relaxed max-w-[65ch]">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* ── CONTACT FORM ─────────────────────────────────────────────────── */}
+        <section id="contact" className="scroll-mt-16 relative bg-[var(--accent)] py-14 sm:py-20 overflow-hidden">
+          <div aria-hidden className="screentone hero-tone absolute inset-0" />
+          <div className="relative max-w-3xl mx-auto px-4 sm:px-6">
+            <div className="frame p-6 sm:p-10">
+              <div className="text-center mb-7">
+                <p className="chip chip-accent mb-3">ปรึกษาฟรี — ไม่มีข้อผูกมัด</p>
+                <h2 className="display text-[clamp(1.75rem,3.4vw,2.25rem)] leading-tight">สนใจให้เราดูแลให้?</h2>
+                <p className="text-[var(--ink-soft)] mt-1.5">กรอกข้อมูลเบื้องต้น เราจะติดต่อกลับภายใน 24 ชม.</p>
               </div>
 
               {isSuccess ? (
-                <div className="text-center py-10">
-                  <div className="w-20 h-20 bg-green-500/10 border border-green-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="w-10 h-10 text-green-500" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">รับข้อมูลแล้ว!</h3>
-                  <p className="text-neutral-400">เราจะติดต่อกลับภายใน 24 ชั่วโมงครับ 🙏</p>
+                <div className="text-center py-8" role="status">
+                  <CheckCircle className="w-14 h-14 text-green-600 mx-auto mb-4" strokeWidth={1.75} aria-hidden />
+                  <h3 className="display text-2xl mb-1">รับข้อมูลแล้ว!</h3>
+                  <p className="text-[var(--ink-soft)]">เราจะติดต่อกลับภายใน 24 ชั่วโมงครับ 🙏</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-sm font-bold text-neutral-300">ชื่อ - นามสกุล</label>
+                      <label htmlFor="inquiry-name" className="text-sm font-semibold">ชื่อ - นามสกุล</label>
                       <input
-                        required type="text" name="name" value={formData.name}
+                        id="inquiry-name" required type="text" name="name" autoComplete="name" value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--gold-primary)]/50 transition-colors text-sm"
+                        className="field w-full px-4 py-3"
                         placeholder="ชื่อของคุณ"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-sm font-bold text-neutral-300">LINE ID หรือ เบอร์โทรศัพท์</label>
+                      <label htmlFor="inquiry-contact" className="text-sm font-semibold">LINE ID หรือ เบอร์โทรศัพท์</label>
                       <input
-                        required type="text" name="contact" value={formData.contact}
+                        id="inquiry-contact" required type="text" name="contact" value={formData.contact}
                         onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                        className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--gold-primary)]/50 transition-colors text-sm"
+                        className="field w-full px-4 py-3"
                         placeholder="สำหรับติดต่อกลับ"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-neutral-300">ประเภทงานที่ต้องการ</label>
+                    <label htmlFor="inquiry-type" className="text-sm font-semibold">ประเภทงานที่ต้องการ</label>
                     <select
-                      name="projectType" value={formData.projectType}
+                      id="inquiry-type" name="projectType" value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--gold-primary)]/50 transition-colors appearance-none text-sm"
+                      className="field w-full px-4 py-3"
                     >
                       <option value="landing_page">Landing Page (หน้าเว็บแนะนำสินค้า/บริการ)</option>
                       <option value="personal_brand">Personal Branding / Portfolio</option>
@@ -568,11 +465,11 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-neutral-300">งบประมาณ (คร่าวๆ)</label>
+                    <label htmlFor="inquiry-budget" className="text-sm font-semibold">งบประมาณ (คร่าวๆ)</label>
                     <select
-                      name="budget" value={formData.budget}
+                      id="inquiry-budget" name="budget" value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--gold-primary)]/50 transition-colors appearance-none text-sm"
+                      className="field w-full px-4 py-3"
                     >
                       <option value="">-- เลือกงบประมาณ --</option>
                       <option value="under-2k">ต่ำกว่า 2,000 บาท</option>
@@ -586,31 +483,28 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-neutral-300">รายละเอียดเพิ่มเติม</label>
+                    <label htmlFor="inquiry-details" className="text-sm font-semibold">รายละเอียดเพิ่มเติม</label>
                     <textarea
-                      name="details" value={formData.details}
+                      id="inquiry-details" name="details" value={formData.details}
                       onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                      className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--gold-primary)]/50 transition-colors min-h-[120px] text-sm resize-none"
+                      className="field !rounded-[20px] w-full px-4 py-3 min-h-[120px] resize-none"
                       placeholder="เล่าไอเดีย หรือความต้องการของคุณให้เราฟังหน่อย..."
                     />
                   </div>
 
-                  <button
-                    type="submit" disabled={isSubmitting}
-                    className="w-full bg-[var(--gold-primary)] text-black font-black text-base py-4 rounded-xl hover:bg-yellow-400 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(212,175,55,0.25)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
-                  >
-                    {isSubmitting ? "กำลังส่งข้อมูล..." : <><Send className="w-4 h-4" /> ส่งข้อมูลเพื่อปรึกษาฟรี</>}
+                  <button type="submit" disabled={isSubmitting} className="btn btn-dark w-full px-6 py-4 text-base">
+                    {isSubmitting ? "กำลังส่งข้อมูล..." : <><Send className="w-4 h-4" aria-hidden /> ส่งข้อมูลเพื่อปรึกษาฟรี</>}
                   </button>
 
-                  <p className="text-center text-xs text-neutral-500">
+                  <p className="text-center text-sm text-[var(--ink-faint)]">
                     ตอบกลับภายใน 24 ชม. • ไม่มีค่าปรึกษา • ไม่มีข้อผูกมัด
                   </p>
                 </form>
               )}
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>

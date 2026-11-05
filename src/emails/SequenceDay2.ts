@@ -5,7 +5,7 @@ export const SequenceDay2 = ({ name }: { name: string }) => {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>🔴 สิทธิ์ใกล้เต็มแล้ว! โอกาสสุดท้ายของราคา 99 บาท</title>
+      <title>Class A: ประสบการณ์ที่ผมอยากแชร์ให้คุณ</title>
       <style>
         body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f6f9fc; color: #333; line-height: 1.6; margin: 0; padding: 0; }
         .container { max-w-width: 600px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 8px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
@@ -24,22 +24,21 @@ export const SequenceDay2 = ({ name }: { name: string }) => {
           <div class="logo">BAD<span class="accent">GAINZ</span></div>
         </div>
         
-        <h1>เตือนครั้งสุดท้ายครับคุณ ${name} 🚨</h1>
+        <h1>สวัสดีอีกครั้งครับคุณ ${name}</h1>
         
-        <p>ผมเห็นว่าคุณ ${name} สนใจเรียนรู้วิธีปั้น Digital Product ให้ได้เงินก้อนแรก แต่ยังไม่ได้ตัดสินใจเข้าร่วมคลาส <strong>Class A: First Step in Journey</strong></p>
-        
-        <p>ผมอยากแจ้งให้ทราบว่า <strong>สิทธิ์ราคาพิเศษ 99 บาท (จากปกติ 590 บาท) ใกล้จะเต็มแล้วนะครับ</strong></p>
-        <p>ถ้าโควต้าครบ 100 ท่านแรกเมื่อไหร่ ระบบจะปรับเป็นราคาเต็มทันทีแบบไม่มีข้อยกเว้นครับ</p>
-        
-        <p>คุณสามารถเลือกได้ครับว่า จะเสียเวลาคลำทางเองเป็นเดือนๆ หรือจะยอมลงทุนเงินแค่ 99 บาท แลกกับสูตรลับที่ผ่านการพิสูจน์มาแล้วว่าทำเงินได้จริงใน 7 วัน</p>
-        
+        <p>ผมเห็นว่าคุณ ${name} สนใจเรื่องการปั้น Digital Product ให้ได้เงินก้อนแรก ถ้ายังไม่แน่ใจว่าจะเริ่มตรงไหน <strong>Class A: First Step in Journey</strong> อาจช่วยได้ครับ</p>
+
+        <p>ในเล่มคือสิ่งที่ผมลองทำมาจริง ตั้งแต่หา Pain Point เช็ค Demand สร้าง จนถึงขาย พร้อมโบนัสอีก 3 รายการ</p>
+
+        <p>ราคา 259 บาท ไม่ต้องรีบ พร้อมเมื่อไหร่ค่อยกดเข้ามาดูครับ</p>
+
         <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://badgainz.vercel.app'}/checkout" class="btn">
-          ✅ คว้าสิทธิ์ราคา 99 บาท ทันที!
+          ดูรายละเอียด Class A
         </a>
+
+        <p>ขอบคุณที่ติดตามกันครับ</p>
         
-        <p>ผมรอแสดงความยินดีกับยอดขายก้อนแรกของคุณอยู่นะครับ</p>
-        
-        <p>ด้วยความเคารพ,<br>Zack, <strong>BADGAINZ</strong></p>
+        <p>ด้วยความเคารพ,<br>Palm, <strong>BADGAINZ</strong></p>
         
         <div class="footer">
           คุณได้รับอีเมลนี้เนื่องจากคุณได้ลงทะเบียนรับข้อมูลจากเว็บไซต์ Badgainz<br>
