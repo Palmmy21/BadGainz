@@ -4,107 +4,98 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { FaLine } from "react-icons/fa";
+
+const LINE_URL = "https://line.me/ti/p/33-eCQHkas";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const [showBanner, setShowBanner] = useState(true);
-
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: "แนะนำตัว", href: "/#about" },
     { name: "สินค้า", href: "/#products" },
-    { name: "รับทำเว็บ (Services)", href: "/services" },
-    { name: "รีวิว", href: "/#reviews" },
-    { name: "บทความ (Blog)", href: "/blog" },
-    { name: "ผลลัพธ์ (Proof)", href: "/proof" },
+    { name: "บริการ", href: "/services" },
+    { name: "ผลงาน", href: "/#work" },
+    { name: "โพสต์", href: "/blog" },
+    { name: "ผลลัพธ์", href: "/proof" },
   ];
 
   return (
     <>
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled && !mobileMenuOpen ? "bg-[#050505]/90 backdrop-blur-md border-b border-white/5" : "bg-transparent"}`}>
-        {/* Urgency Banner */}
-        {showBanner && (
-          <div className="bg-gradient-to-r from-yellow-500 via-[var(--gold-primary)] to-yellow-500 text-black text-xs sm:text-sm font-black text-center py-2 px-4 shadow-[0_0_15px_rgba(212,175,55,0.4)] relative pr-10">
-            <span className="animate-pulse inline-block mr-2 text-red-600">ด่วน!</span>
-            โค้งสุดท้าย! โปรโมชัน Early Bird ลด 70% สิทธิ์ใกล้เต็มแล้ว (เหลือ 100 สิทธิ์สุดท้าย)
-            <button 
-              onClick={() => setShowBanner(false)} 
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-black/60 hover:text-black transition-colors"
-              aria-label="Close banner"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        )}
-        
-        <nav className={`transition-all duration-300 ${isScrolled ? "py-4" : "py-6"}`}>
-          <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="relative z-50 text-[var(--gold-primary)] font-black tracking-widest text-xl uppercase">
-              BADGAINZ
-            </Link>
+      <header className="sticky top-0 z-50 w-full bg-[var(--surface)]/95 backdrop-blur-sm text-[var(--ink)] border-b border-[var(--line)]">
+        <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+          <Link href="/" className="relative z-50 flex items-center gap-2.5 shrink-0" aria-label="BADGAINZ หน้าแรก">
+            <span className="relative w-10 h-10 rounded-full overflow-hidden ring-1 ring-[var(--line)] bg-[var(--accent)]">
+              <Image src="/avatar-yellow.png" alt="" fill sizes="40px" className="object-cover" priority />
+            </span>
+            <span className="font-[family-name:var(--font-display)] font-bold text-lg tracking-[0.04em]">BADGAINZ</span>
+          </Link>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-neutral-300 hover:text-[var(--gold-primary)] font-medium transition-colors text-sm uppercase tracking-wide"
-                >
-                  {link.name}
-                </Link>
-              ))}
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
               <Link
-                href="/checkout"
-                className="px-6 py-2 bg-[var(--gold-primary)] text-black font-bold rounded-sm hover:bg-[var(--gold-hover)] transition-colors"
+                key={link.name}
+                href={link.href}
+                className="px-3.5 py-2 rounded-[10px] font-medium text-[15px] text-[var(--ink-soft)] hover:text-[var(--ink)] hover:bg-[var(--ground)] transition-colors"
               >
-                เข้าคอร์ส / สั่งซื้อ
+                {link.name}
               </Link>
-            </div>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              className="md:hidden text-white relative z-50"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X /> : <Menu />}
-            </button>
+            ))}
           </div>
+
+          <div className="hidden md:flex items-center gap-2">
+            <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-outline px-4 py-2 text-sm">
+              <FaLine className="w-4 h-4 text-[var(--line-green)]" aria-hidden /> คุยงาน
+            </a>
+            <Link href="/checkout" className="btn btn-primary px-4 py-2 text-sm">
+              ซื้อ E-book
+            </Link>
+          </div>
+
+          <button
+            className="md:hidden relative z-50 w-10 h-10 grid place-items-center rounded-[10px] border border-[var(--line-strong)] bg-[var(--surface)]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "ปิดเมนู" : "เปิดเมนู"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </nav>
       </header>
 
-      {/* Mobile Nav */}
       <div
-        className={`fixed inset-0 z-40 bg-[#050505] flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${
-          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 top-16 z-40 md:hidden bg-[var(--ground)] text-[var(--ink)] transition-[clip-path] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          mobileMenuOpen ? "[clip-path:inset(0_0_0_0)]" : "[clip-path:inset(0_0_100%_0)] pointer-events-none"
         }`}
+        aria-hidden={!mobileMenuOpen}
       >
-        {navLinks.map((link) => (
-          <Link
-            key={link.name}
-            href={link.href}
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-2xl text-neutral-300 hover:text-[var(--gold-primary)] font-medium transition-colors"
-          >
-            {link.name}
-          </Link>
-        ))}
-        <Link
-          href="/checkout"
-          onClick={() => setMobileMenuOpen(false)}
-          className="px-8 py-3 bg-[var(--gold-primary)] text-black text-xl font-bold rounded-sm hover:bg-[var(--gold-hover)] transition-colors mt-4"
-        >
-          เข้าคอร์ส / สั่งซื้อ
-        </Link>
+        <div className="px-4 py-6 flex flex-col gap-3">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              tabIndex={mobileMenuOpen ? 0 : -1}
+              className="card px-5 py-4 font-[family-name:var(--font-display)] font-semibold text-lg"
+            >
+              {link.name}
+            </Link>
+          ))}
+          <div className="grid grid-cols-2 gap-3 mt-2">
+            <a href={LINE_URL} target="_blank" rel="noopener noreferrer" tabIndex={mobileMenuOpen ? 0 : -1} className="btn btn-outline py-3">
+              <FaLine className="w-5 h-5 text-[var(--line-green)]" aria-hidden /> คุยงาน
+            </a>
+            <Link href="/checkout" onClick={() => setMobileMenuOpen(false)} tabIndex={mobileMenuOpen ? 0 : -1} className="btn btn-primary py-3">
+              ซื้อ E-book
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
